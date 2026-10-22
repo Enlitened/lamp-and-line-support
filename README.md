@@ -4,10 +4,10 @@ The public pages for [Lamp & Line](https://apps.apple.com/app/id6808235223), a
 quiet Bible for iPhone, iPad and Apple Watch. Published with GitHub Pages from
 `main`.
 
-- Landing page — <https://enlitened.github.io/lamp-and-line-support/>
+- Landing page — <https://lampandline.app/>
   (the App Store listing's Marketing URL)
-- Support — <https://enlitened.github.io/lamp-and-line-support/support.html>
-- Privacy policy — <https://enlitened.github.io/lamp-and-line-support/privacy.html>
+- Support — <https://lampandline.app/support.html>
+- Privacy policy — <https://lampandline.app/privacy.html>
 
 All three URLs are the ones filed in App Store Connect. The source of truth for
 the support and privacy text is `AppStore/SUPPORT.md` and `AppStore/PRIVACY.md`

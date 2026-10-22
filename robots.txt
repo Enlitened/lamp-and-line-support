@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://enlitened.github.io/lamp-and-line-support/sitemap.xml
+Sitemap: https://lampandline.app/sitemap.xml
