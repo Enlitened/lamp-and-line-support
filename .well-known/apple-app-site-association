@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["A65S7FAS38.com.colinsergay.lampandline"],
+        "components": [
+          {
+            "/": "/bible/*/*.html",
+            "comment": "A chapter page, and the verse its #v anchor names, opens in the app. Nothing else on the site does."
+          }
+        ]
+      }
+    ]
+  }
+}
