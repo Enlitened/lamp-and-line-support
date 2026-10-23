@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://lampandline.app/sitemap.xml
+Sitemap: https://lampandline.app/sitemap-bible.xml

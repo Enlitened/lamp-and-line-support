@@ -94,3 +94,117 @@ a.store:hover { opacity: .9; }
   .features { grid-template-columns: 1fr; }
   .shots { gap: 12px; }
 }
+
+/* The Bible: bible/, written by tools/build_bible.py. Scripture is set in the
+   serif the app reads in; everything that is not Scripture (headings, verse
+   numbers, note letters, the notes themselves) is in the interface face, so
+   the two cannot be confused. */
+main.bible { max-width: 680px; }
+.crumbs { font-size: .9rem; color: var(--muted); margin: 0 0 14px; }
+.crumbs a { text-decoration: none; }
+main.bible h1 { line-height: 1.2; }
+main.bible h1 + .stamp { margin-bottom: 28px; }
+.scripture {
+  font-family: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+.scripture p { margin: 0 0 .9em; }
+.scripture p.b { margin-top: 1.2em; }
+/* Poetry and lists: one line to a paragraph, the continuation of a long line
+   hung beneath it, as a printed psalter does. */
+.scripture :is(.q1, .q2, .qr, .li1, .li2, .pc) { margin: 0; }
+.scripture :is(.q1, .q2, .qr, .li1, .li2, .pc) + :is(.m, .pmo) { margin-top: .9em; }
+.scripture :is(.m, .pmo) + :is(.q1, .q2, .qr, .li1, .li2, .pc):not(.b) { margin-top: -.3em; }
+.scripture .q1 { padding-left: 2em; text-indent: -2em; }
+.scripture .q2 { padding-left: 3em; text-indent: -2em; }
+.scripture .qr { text-align: right; }
+.scripture .li1 { padding-left: 2.25em; text-indent: -1.5em; }
+.scripture .li2 { padding-left: 3em; text-indent: -1.5em; }
+.scripture .pc { text-align: center; }
+.scripture .sc { font-variant-caps: all-small-caps; }
+.scripture sup { line-height: 0; }
+.scripture sup.v {
+  font: 600 .6em ui-sans-serif, -apple-system, system-ui, sans-serif;
+  color: var(--muted);
+}
+.scripture sup.fn, .scripture sup.fn a {
+  font: 600 .62em ui-sans-serif, -apple-system, system-ui, sans-serif;
+  color: var(--accent);
+  text-decoration: none;
+}
+.scripture sup.fn a { font-size: 1em; padding: 0 .1em; }
+/* Headings. Section headings are the translators' editorial aids; the
+   superscription (.d) and the acrostic letters (.qa) are the text itself. */
+.scripture h2, .scripture h3 {
+  font-family: ui-sans-serif, -apple-system, system-ui, "Helvetica Neue", sans-serif;
+  line-height: 1.35;
+}
+.scripture h2 { font-size: 1.05rem; margin: 1.9em 0 .6em; }
+.scripture h3 { font-size: .98rem; margin: 1.5em 0 .5em; }
+.scripture > :first-child { margin-top: 0; }
+.scripture h2.ms { text-align: center; letter-spacing: .12em; font-size: .95rem; }
+.scripture h2.ms + .mr { margin-top: -.5em; }
+.scripture .mr { text-align: center; color: var(--muted); font-size: .95rem; }
+.scripture .r {
+  font: italic .9rem/1.5 ui-sans-serif, -apple-system, system-ui, sans-serif;
+  color: var(--muted);
+  margin: -.4em 0 .8em;
+}
+.scripture .d { font-style: italic; }
+.scripture h3.qa { text-align: center; letter-spacing: .14em; font-size: .85rem; color: var(--muted); }
+.notes {
+  margin-top: 40px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .9rem;
+}
+.notes h2 { font-size: .95rem; margin: 12px 0 10px; }
+.notes ol { list-style: none; padding: 0; margin: 0; }
+.notes li { margin: 0 0 6px; }
+.notes a.back { font-weight: 600; text-decoration: none; margin-right: .2em; }
+.notes .at { color: var(--ink); font-variant-numeric: tabular-nums; margin-right: .25em; }
+.notes .omitted { margin: 0 0 12px; }
+:target { scroll-margin-top: 24px; }
+.notes li:target, .notes .omitted:target { color: var(--ink); }
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 36px 0 0;
+  font-weight: 600;
+}
+.pager a { text-decoration: none; }
+.card.offline h2 { margin-top: 0; font-size: 1.05rem; }
+.card.offline p { color: var(--muted); }
+.card.offline .cta { margin: 0; }
+ol.chapters {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(3.25rem, 1fr));
+  gap: 8px;
+}
+ol.chapters li { margin: 0; }
+ol.chapters a {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+ol.chapters a:hover { border-color: var(--accent); }
+ul.books {
+  list-style: none;
+  padding: 0;
+  columns: 3 11rem;
+  column-gap: 24px;
+}
+ul.books li { margin: 0 0 6px; }
+ul.books a { text-decoration: none; }
+footer .rights { margin: 0 0 10px; }
+footer .rights a { margin-right: 0; }
