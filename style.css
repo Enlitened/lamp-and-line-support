@@ -1,113 +1,400 @@
+/* The site wears the app's own identity (LampAndLineDesign in the app
+   repository): the page is the reader's ivory, or its dark canvas at night,
+   and the painted things — the lamp, the shelf, the bound panels, the bar and
+   the footer — are vesper indigo with lamplight and gilt, the same in a dark
+   room as a light one, like a binding. Serif is the reading face (New York on
+   Apple devices); everything that is interface is in the system sans, as in
+   the app. No web fonts: the site makes no request it does not need. */
 :root {
-  --ground: #fbf7f0;
-  --surface: #fffdf8;
+  --paper: #fbf7f0;
+  --raised: #fffdf8;
   --ink: #161d2b;
   --muted: #5a6472;
   --line: #e3dacb;
   --accent: #8a6224;
+
+  --vesper: #1b2440;
+  --on-vesper: #f3eada;
+  --on-vesper-muted: #bdb7ae;
+  --lamplight: #e8b55a;
+  --gilt: #d8b26a;
+  --on-spine: #faf3e3;
+
+  /* The shelves' bindings, by genre (LampIdentity.binding). */
+  --law: #8c5a3c;
+  --history: #5f6b3c;
+  --wisdom: #8f6820;
+  --major: #3e4c84;
+  --minor: #4a5f73;
+  --gospels: #8e3b46;
+  --acts: #94532f;
+  --pauline: #2f6a6e;
+  --general: #566a4c;
+  --revelation: #5e4a7e;
+
+  --serif: ui-serif, "New York", "Iowan Old Style", Charter, "Palatino Linotype", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+
+  color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --ground: #14120f;
-    --surface: #1e1b17;
+    --paper: #14120f;
+    --raised: #1e1b17;
     --ink: #ede6da;
     --muted: #a49c90;
     --line: #35302a;
     --accent: #d6a951;
   }
 }
+
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--ground);
+  background: var(--paper);
   color: var(--ink);
-  font: 16px/1.65 ui-sans-serif, -apple-system, system-ui, "Helvetica Neue", sans-serif;
+  font: 17px/1.6 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
-main { max-width: 640px; margin: 0 auto; padding: 72px 24px 96px; }
-h1 { font-size: 2.2rem; letter-spacing: -.02em; margin: 0 0 6px; }
-h2 { font-size: 1.15rem; margin: 40px 0 8px; }
+main { max-width: 680px; margin: 0 auto; padding: 64px 20px 96px; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; text-wrap: balance; }
+h1 {
+  font-size: clamp(2.1rem, 1.5rem + 2.2vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -.012em;
+  margin: 0 0 16px;
+}
+h2 { font-size: 1.45rem; line-height: 1.25; margin: 48px 0 10px; }
+h3 { font-size: 1.15rem; line-height: 1.3; margin: 28px 0 6px; }
 p { margin: 0 0 14px; }
-p.lede { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; }
+p.lede { color: var(--muted); font-size: 1.12rem; line-height: 1.55; margin-bottom: 32px; text-wrap: pretty; }
 p.stamp { color: var(--muted); font-size: .9rem; margin: 0 0 36px; }
-a { color: var(--accent); }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--lamplight); outline-offset: 3px; border-radius: 3px; }
 ul, ol { margin: 0 0 14px; padding-left: 22px; }
 li { margin: 0 0 6px; }
+li::marker { color: var(--muted); }
 dl { margin: 0; }
 dt { font-weight: 600; margin-top: 22px; }
 dd { margin: 4px 0 0; color: var(--muted); }
 dd p { margin: 0 0 10px; }
 dd p:last-child { margin-bottom: 0; }
+strong { font-weight: 600; }
+
 .card {
-  background: var(--surface);
+  background: var(--raised);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 22px 24px;
-  margin: 28px 0 0;
+  border-radius: 14px;
+  padding: 24px 26px;
+  margin: 40px 0 0;
 }
-footer {
-  margin-top: 56px;
+.card > h2:first-child { margin-top: 0; }
+
+/* The App Store button: vesper ink on a lamplight fill, the app's "Rest here". */
+.cta { margin: 0 0 10px; }
+a.store {
+  display: inline-block;
+  background: var(--lamplight);
+  color: var(--vesper);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 13px 24px;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 8px 22px -10px rgba(232, 181, 90, .8);
+  transition: transform .15s ease;
+}
+a.store:hover { transform: translateY(-1px); }
+a.store:active { transform: none; }
+.fine { color: var(--muted); font-size: .9rem; margin: 0; }
+
+/* The bar above every hand-written page but the home page. */
+.bar { background: var(--vesper); color: var(--on-vesper); }
+.bar > div {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.bar a { color: var(--on-vesper); text-decoration: none; font-size: .95rem; }
+.bar a:hover { color: var(--lamplight); }
+.bar a.mark { display: flex; align-items: center; gap: 10px; font: 600 1.08rem var(--serif); }
+.bar a.mark img { border-radius: 7px; }
+
+main > footer {
+  margin-top: 64px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: .9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
 }
-footer a { margin-right: 14px; }
+main > footer > p { flex-basis: 100%; }
+main > footer .rights { margin: 0 0 6px; }
 
-/* Landing page */
-main.landing { max-width: 760px; }
-.hero { text-align: center; }
-.hero .icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 8px 28px rgba(0,0,0,.18); }
-.hero h1 { margin-top: 18px; }
-.hero .subtitle { font-size: 1.25rem; color: var(--muted); margin: 0 0 18px; }
-.hero .lede { max-width: 540px; margin: 0 auto 26px; }
-.cta { margin: 0 0 10px; }
-a.store {
-  display: inline-block;
-  background: var(--ink);
-  color: var(--ground);
+/* ---- Home page ------------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--vesper);
+  color: var(--on-vesper);
+  isolation: isolate;
+}
+/* The lamp's light, falling from the icon across the verse and the shelves. */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -30%;
+  top: -45%;
+  width: 110%;
+  height: 150%;
+  background: radial-gradient(closest-side, rgba(232, 181, 90, .28), rgba(232, 181, 90, .09) 50%, transparent);
+  animation: lamp 9s ease-in-out infinite alternate;
+}
+@keyframes lamp {
+  from { opacity: .8; transform: scale(.97); }
+  to { opacity: 1; transform: scale(1.03); }
+}
+.hero-in { max-width: 1080px; margin: 0 auto; padding: 48px 20px 0; }
+.hero h1 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+  margin: 0 0 64px;
+}
+.hero h1 img { border-radius: 13px; box-shadow: 0 0 0 1px rgba(243, 234, 218, .12), 0 0 56px rgba(232, 181, 90, .5); }
+.verse { margin: 0 0 32px; max-width: 960px; }
+.verse p {
+  font: 400 clamp(2.3rem, 1.1rem + 4.6vw, 4.25rem)/1.06 var(--serif);
+  letter-spacing: -.022em;
+  margin: 0 0 18px;
+}
+.verse p span { display: block; text-wrap: balance; }
+.verse p span + span { padding-left: 1.1em; }
+.verse footer { font: italic 1.05rem var(--serif); color: var(--on-vesper-muted); }
+.verse footer a { color: var(--gilt); }
+.hero .lede { color: var(--on-vesper-muted); max-width: 33em; margin-bottom: 28px; }
+.hero .fine { color: var(--on-vesper-muted); }
+
+/* The library: every book of the Bible as a spine as thick as it is long, on
+   the square-root curve of the app's BookSpine. A spine's --w is its share of
+   the way from thinnest to thickest, and --s a small step up or down so a shelf
+   is not all one height. Written into index.html once from the Scripture
+   database; the books do not change. */
+.library {
+  --thin: 18px;
+  --span: 22px;
+  --spine: 148px;
+  padding: 72px 0 44px;
+}
+.library-in {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 36px 44px;
+}
+.case { flex: none; }
+.case p { font: 400 .88rem var(--sans); color: var(--on-vesper-muted); margin: 12px 0 0; }
+.shelf {
+  list-style: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  margin: 0;
+  padding: 0 6px 9px;
+  /* The board, with a gilt edge that catches the lamp. */
+  background:
+    linear-gradient(var(--gilt), var(--gilt)) left 0 bottom 8px / 100% 1px no-repeat,
+    linear-gradient(#0d1326, #0d1326) left 0 bottom 0 / 100% 8px no-repeat;
+}
+.shelf li {
+  flex: none;
+  margin: 0;
+  width: calc(var(--thin) + var(--span) * var(--w));
+  height: calc(var(--spine) * (1 + var(--s) * .035));
+}
+.shelf a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px 0;
+  overflow: hidden;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  font: 500 11px/1 var(--serif);
+  letter-spacing: .02em;
+  color: var(--on-spine);
   text-decoration: none;
-  font-weight: 600;
-  padding: 12px 22px;
-  border-radius: 999px;
+  border-radius: 3px 3px 1px 1px;
+  /* Gilt bands top and bottom, then the curve of a bound spine: light down
+     one edge, shade down the other. */
+  background:
+    linear-gradient(var(--gilt), var(--gilt)) left 0 top 7px / 100% 1px no-repeat,
+    linear-gradient(var(--gilt), var(--gilt)) left 0 bottom 7px / 100% 1px no-repeat,
+    linear-gradient(90deg, rgba(255, 255, 255, .16), transparent 35%, transparent 65%, rgba(0, 0, 0, .28)),
+    var(--binding);
+  transition: transform .18s ease, filter .18s ease;
 }
-a.store:hover { opacity: .9; }
-.fine { color: var(--muted); font-size: .9rem; margin: 0; }
-.shots {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 56px auto 0;
-  max-width: 620px;
-}
-.shots img { width: 100%; height: auto; }
-.features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 36px;
-  margin-top: 32px;
-}
-.features h2 { margin: 28px 0 6px; }
-.features p { color: var(--muted); }
-.notice { color: var(--muted); font-size: .9rem; margin-top: 28px; }
-@media (max-width: 560px) {
-  .features { grid-template-columns: 1fr; }
-  .shots { gap: 12px; }
+.shelf a:hover, .shelf a:focus-visible { transform: translateY(-8px); filter: brightness(1.15); }
+.law { --binding: var(--law); }
+.history { --binding: var(--history); }
+.wisdom { --binding: var(--wisdom); }
+.major { --binding: var(--major); }
+.minor { --binding: var(--minor); }
+.gospels { --binding: var(--gospels); }
+.acts { --binding: var(--acts); }
+.pauline { --binding: var(--pauline); }
+.general { --binding: var(--general); }
+.revelation { --binding: var(--revelation); }
+.library .note {
+  max-width: 1080px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  color: var(--on-vesper-muted);
+  font-size: .92rem;
 }
 
-/* The Bible: bible/, written by tools/build_bible.py. Scripture is set in the
-   serif the app reads in; everything that is not Scripture (headings, verse
-   numbers, note letters, the notes themselves) is in the interface face, so
-   the two cannot be confused. */
+main.landing { max-width: 1080px; padding-top: 96px; }
+
+/* The two screens stay in view while the features scroll past them. */
+.tour {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 80px;
+  align-items: start;
+}
+.shots {
+  position: sticky;
+  top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.shots img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 0 0 1px var(--line), 0 28px 48px -30px rgba(27, 36, 64, .5);
+}
+.shots img + img { margin-top: 56px; }
+.features h2 { margin: 0 0 8px; font-size: 1.35rem; }
+.features > div { padding: 28px 0; border-top: 1px solid var(--line); }
+.features > div:first-child { padding-top: 0; border-top: 0; }
+.features p { color: var(--muted); margin: 0; max-width: 36em; }
+
+.price { margin-top: 120px; }
+.price > h2 { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.4rem); margin: 0 0 10px; }
+.price > p { color: var(--muted); max-width: 38em; margin-bottom: 32px; }
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.tier { border-radius: 16px; padding: 32px 34px 30px; }
+.tier h3 { margin: 0 0 4px; font-size: 1.5rem; }
+.tier .terms { margin: 0 0 18px; font-size: .95rem; }
+.tier ul { list-style: none; padding: 0; margin: 0; }
+.tier li { padding: 9px 0 9px 24px; margin: 0; position: relative; border-top: 1px solid var(--tier-line, var(--line)); }
+.tier li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 1.02em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tier-dot, var(--accent));
+}
+.tier .after { margin: 16px 0 0; font-size: .95rem; }
+.tier.free { background: var(--raised); border: 1px solid var(--line); }
+.tier.free .terms, .tier.free .after { color: var(--muted); }
+/* Full is bound like a cover: vesper, with a gilt rule set in from the edge. */
+.tier.full {
+  --tier-line: rgba(243, 234, 218, .14);
+  --tier-dot: var(--lamplight);
+  background: var(--vesper);
+  color: var(--on-vesper);
+  box-shadow: inset 0 0 0 7px var(--vesper), inset 0 0 0 8px rgba(216, 178, 106, .55);
+}
+.tier.full .terms, .tier.full .after { color: var(--on-vesper-muted); }
+
+.notice { color: var(--muted); font-size: .92rem; margin: 40px 0 0; }
+
+footer.site { background: var(--vesper); color: var(--on-vesper-muted); font-size: .92rem; }
+footer.site > div {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 20px 56px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+}
+footer.site .mark { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font: 600 1.08rem var(--serif); color: var(--on-vesper); }
+footer.site .mark img { border-radius: 7px; }
+footer.site h2 { font: 600 .92rem var(--sans); color: var(--on-vesper); margin: 0 0 10px; }
+footer.site ul { list-style: none; padding: 0; margin: 0; }
+footer.site li { margin: 0 0 6px; }
+footer.site a { color: var(--on-vesper-muted); text-decoration: none; }
+footer.site a:hover { color: var(--lamplight); }
+
+@media (max-width: 860px) {
+  .tour { grid-template-columns: 1fr; gap: 48px; }
+  .shots { position: static; max-width: 520px; }
+  .tiers { grid-template-columns: 1fr; }
+  footer.site > div { grid-template-columns: 1fr 1fr; }
+  footer.site > div > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  main { padding-top: 44px; }
+  .hero-in { padding-top: 28px; }
+  .hero h1 { margin-bottom: 44px; }
+  .verse p span + span { padding-left: .7em; }
+  /* A shelf is wider than a phone: it scrolls on its own, the page does not. */
+  .library { --thin: 16px; --span: 18px; --spine: 124px; padding-top: 52px; }
+  .library-in { display: block; overflow-x: auto; scrollbar-width: none; }
+  .library-in::-webkit-scrollbar { display: none; }
+  .case { width: max-content; }
+  .case + .case { margin-top: 28px; }
+  .shelf a { font-size: 10px; }
+  main.landing { padding-top: 56px; }
+  .shots { gap: 12px; }
+  .shots img { border-radius: 12px; }
+  .shots img + img { margin-top: 32px; }
+  .price { margin-top: 72px; }
+  .tier { padding: 26px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+  a.store, .shelf a { transition: none; }
+  a.store:hover, .shelf a:hover, .shelf a:focus-visible { transform: none; }
+}
+
+/* ---- The Bible: bible/, written by tools/build_bible.py --------------------
+   Scripture is set in the serif the app reads in; everything that is not
+   Scripture (headings, verse numbers, note letters, the notes themselves) is
+   in the interface face, so the two cannot be confused. */
 main.bible { max-width: 680px; }
 .crumbs { font-size: .9rem; color: var(--muted); margin: 0 0 14px; }
 .crumbs a { text-decoration: none; }
-main.bible h1 { line-height: 1.2; }
-main.bible h1 + .stamp { margin-bottom: 28px; }
+main.bible h1 { line-height: 1.15; }
+main.bible h1 + .stamp { margin-bottom: 32px; }
+main.bible > h2 { font-size: 1.3rem; }
 .scripture {
-  font-family: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
-  font-size: 1.15rem;
-  line-height: 1.7;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.72;
 }
 .scripture p { margin: 0 0 .9em; }
 .scripture p.b { margin-top: 1.2em; }
@@ -124,61 +411,66 @@ main.bible h1 + .stamp { margin-bottom: 28px; }
 .scripture .pc { text-align: center; }
 .scripture .sc { font-variant-caps: all-small-caps; }
 .scripture sup { line-height: 0; }
-.scripture sup.v {
-  font: 600 .6em ui-sans-serif, -apple-system, system-ui, sans-serif;
-  color: var(--muted);
-}
+.scripture sup.v { font: 600 .58em var(--sans); color: var(--muted); }
 .scripture sup.fn, .scripture sup.fn a {
-  font: 600 .62em ui-sans-serif, -apple-system, system-ui, sans-serif;
+  font: 600 .6em var(--sans);
   color: var(--accent);
   text-decoration: none;
 }
 .scripture sup.fn a { font-size: 1em; padding: 0 .1em; }
+/* A shared verse lands on its number (#v16): light it, as the app does. */
+.scripture sup.v:target { color: var(--vesper); background: var(--lamplight); border-radius: 3px; padding: 0 .25em; }
 /* Headings. Section headings are the translators' editorial aids; the
    superscription (.d) and the acrostic letters (.qa) are the text itself. */
-.scripture h2, .scripture h3 {
-  font-family: ui-sans-serif, -apple-system, system-ui, "Helvetica Neue", sans-serif;
-  line-height: 1.35;
-}
-.scripture h2 { font-size: 1.05rem; margin: 1.9em 0 .6em; }
-.scripture h3 { font-size: .98rem; margin: 1.5em 0 .5em; }
+.scripture h2, .scripture h3 { font-family: var(--sans); line-height: 1.35; }
+.scripture h2 { font-size: 1.02rem; margin: 2em 0 .6em; }
+.scripture h3 { font-size: .96rem; margin: 1.5em 0 .5em; }
 .scripture > :first-child { margin-top: 0; }
 .scripture h2.ms { text-align: center; letter-spacing: .12em; font-size: .95rem; }
 .scripture h2.ms + .mr { margin-top: -.5em; }
 .scripture .mr { text-align: center; color: var(--muted); font-size: .95rem; }
 .scripture .r {
-  font: italic .9rem/1.5 ui-sans-serif, -apple-system, system-ui, sans-serif;
+  font: italic .88rem/1.5 var(--sans);
   color: var(--muted);
   margin: -.4em 0 .8em;
 }
 .scripture .d { font-style: italic; }
 .scripture h3.qa { text-align: center; letter-spacing: .14em; font-size: .85rem; color: var(--muted); }
+:target { scroll-margin-top: 24px; }
 .notes {
-  margin-top: 40px;
+  margin-top: 48px;
   padding-top: 8px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: .9rem;
 }
-.notes h2 { font-size: .95rem; margin: 12px 0 10px; }
+.notes h2 { font: 600 .95rem var(--sans); margin: 12px 0 10px; }
 .notes ol { list-style: none; padding: 0; margin: 0; }
 .notes li { margin: 0 0 6px; }
 .notes a.back { font-weight: 600; text-decoration: none; margin-right: .2em; }
 .notes .at { color: var(--ink); font-variant-numeric: tabular-nums; margin-right: .25em; }
 .notes .omitted { margin: 0 0 12px; }
-:target { scroll-margin-top: 24px; }
 .notes li:target, .notes .omitted:target { color: var(--ink); }
 .pager {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  margin: 36px 0 0;
+  margin: 40px 0 0;
   font-weight: 600;
 }
 .pager a { text-decoration: none; }
-.card.offline h2 { margin-top: 0; font-size: 1.05rem; }
-.card.offline p { color: var(--muted); }
-.card.offline .cta { margin: 0; }
+/* The offline card is a lamp card: vesper, bound in gilt, wherever it sits. */
+.card.offline {
+  background: var(--vesper);
+  color: var(--on-vesper);
+  border: 0;
+  margin-top: 48px;
+  padding: 30px 32px;
+  box-shadow: inset 0 0 0 7px var(--vesper), inset 0 0 0 8px rgba(216, 178, 106, .5);
+}
+.card.offline h2 { margin-top: 0; font-size: 1.3rem; }
+.card.offline p { color: var(--on-vesper-muted); }
+.card.offline .cta { margin: 20px 0 0; }
 ol.chapters {
   list-style: none;
   padding: 0;
@@ -193,7 +485,8 @@ ol.chapters a {
   padding: 10px 0;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--surface);
+  background: var(--raised);
+  font-family: var(--serif);
   text-decoration: none;
   font-variant-numeric: tabular-nums;
 }
@@ -203,8 +496,9 @@ ul.books {
   padding: 0;
   columns: 3 11rem;
   column-gap: 24px;
+  font-family: var(--serif);
+  font-size: 1.05rem;
 }
 ul.books li { margin: 0 0 6px; }
 ul.books a { text-decoration: none; }
-footer .rights { margin: 0 0 10px; }
-footer .rights a { margin-right: 0; }
+ul.books a:hover { text-decoration: underline; }

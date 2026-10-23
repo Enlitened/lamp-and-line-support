@@ -232,7 +232,16 @@ def head(title, description, path, depth, og_title, crumbs):
         lines.append('<script type="application/ld+json">')
         lines.append(json.dumps(data, indent=2, ensure_ascii=False).replace("</", "<\\/"))
         lines.append("</script>")
-    lines += ["</head>", "<body>"]
+    lines += [
+        "</head>",
+        "<body>",
+        # The bar the hand-written pages open with.
+        '<header class="bar"><div>',
+        '  <a class="mark" href="%s"><img src="%sassets/icon-512.png" width="28" height="28" alt=""> Lamp &amp; Line</a>'
+        % (up or "./", up),
+        '  <a href="%sbible/">Read the Bible</a>' % up,
+        "</div></header>",
+    ]
     return "\n".join(lines) + "\n"
 
 

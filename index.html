@@ -74,80 +74,214 @@
 </script>
 </head>
 <body>
-<main class="landing">
-  <header class="hero">
-    <img class="icon" src="assets/icon-512.png" width="112" height="112" alt="">
-    <h1>Lamp &amp; Line</h1>
-    <p class="subtitle">Berean Standard Bible, offline</p>
+<header class="hero">
+  <div class="hero-in">
+    <h1><img src="assets/icon-512.png" width="56" height="56" alt=""> Lamp &amp; Line</h1>
+    <blockquote class="verse">
+      <p><span>Your word is a lamp to my feet</span> <span>and a light to my path.</span></p>
+      <footer><a href="bible/psalms/119.html#v105">Psalm 119:105</a>, Berean Standard Bible</footer>
+    </blockquote>
     <p class="lede">The complete Bible, free and offline. No account, no ads, nothing collected. One Psalm, one reading, and one prayer a day, on iPhone, iPad and Apple Watch.</p>
     <!-- A campaign link (ct=website): App Analytics then reports how many visits
      from this page became downloads, with no SDK and no tracking on this site.
      The pt= token is the account's provider token from App Analytics ›
      Campaigns. The page-specific links (?ppid=) live on the pages written for
      one search each; this one is for anyone. -->
-<p class="cta"><a class="store" href="https://apps.apple.com/app/apple-store/id6808235223?pt=129383521&amp;ct=website&amp;mt=8">Download on the App&nbsp;Store</a></p>
+    <p class="cta"><a class="store" href="https://apps.apple.com/app/apple-store/id6808235223?pt=129383521&amp;ct=website&amp;mt=8">Download on the App&nbsp;Store</a></p>
     <p class="fine">Free. One optional purchase, never a subscription.</p>
-  </header>
-
-  <div class="shots">
-    <img src="assets/psalm-23.png" width="660" height="1434" alt="Psalm 23 in Lamp &amp; Line, set as poetry with hanging lines, under the caption “The complete Bible. Free, offline, no account.”">
-    <img src="assets/today.png" width="660" height="1434" alt="The Today screen: one Psalm, one short reading, and one prayer, under the caption “A Psalm, a reading, and a prayer. On your iPhone and your Watch.”">
   </div>
 
-  <section class="features">
-    <div>
-      <h2>The complete Berean Standard Bible, offline</h2>
-      <p>No account, no feed, no advertisement, no interruption. The complete Berean Standard Bible is stored on your device, so it works on a plane, in a basement, and with every network switched off.</p>
+  <!-- The 66 books as the app's library shelves them, each a link to its page
+       under bible/. Written once from the Scripture database (name, chapter
+       count, canonical order); style.css says what --w and --s are. -->
+  <div class="library">
+    <div class="library-in">
+      <div class="case">
+        <ol class="shelf" aria-label="Old Testament">
+          <li class="law" style="--w:0.54;--s:0"><a href="bible/genesis/" title="Genesis, 50 chapters">Genesis</a></li>
+          <li class="law" style="--w:0.47;--s:2"><a href="bible/exodus/" title="Exodus, 40 chapters">Exodus</a></li>
+          <li class="law" style="--w:0.37;--s:-1"><a href="bible/leviticus/" title="Leviticus, 27 chapters">Leviticus</a></li>
+          <li class="law" style="--w:0.44;--s:1"><a href="bible/numbers/" title="Numbers, 36 chapters">Numbers</a></li>
+          <li class="law" style="--w:0.43;--s:-2"><a href="bible/deuteronomy/" title="Deuteronomy, 34 chapters">Deuteronomy</a></li>
+          <li class="history" style="--w:0.35;--s:0"><a href="bible/joshua/" title="Joshua, 24 chapters">Joshua</a></li>
+          <li class="history" style="--w:0.32;--s:2"><a href="bible/judges/" title="Judges, 21 chapters">Judges</a></li>
+          <li class="history" style="--w:0.09;--s:-1"><a href="bible/ruth/" title="Ruth, 4 chapters">Ruth</a></li>
+          <li class="history" style="--w:0.41;--s:1"><a href="bible/1-samuel/" title="1 Samuel, 31 chapters">1 Samuel</a></li>
+          <li class="history" style="--w:0.35;--s:-2"><a href="bible/2-samuel/" title="2 Samuel, 24 chapters">2 Samuel</a></li>
+          <li class="history" style="--w:0.33;--s:0"><a href="bible/1-kings/" title="1 Kings, 22 chapters">1 Kings</a></li>
+          <li class="history" style="--w:0.36;--s:2"><a href="bible/2-kings/" title="2 Kings, 25 chapters">2 Kings</a></li>
+          <li class="history" style="--w:0.39;--s:-1"><a href="bible/1-chronicles/" title="1 Chronicles, 29 chapters">1 Chronicles</a></li>
+          <li class="history" style="--w:0.44;--s:1"><a href="bible/2-chronicles/" title="2 Chronicles, 36 chapters">2 Chronicles</a></li>
+          <li class="history" style="--w:0.19;--s:-2"><a href="bible/ezra/" title="Ezra, 10 chapters">Ezra</a></li>
+          <li class="history" style="--w:0.23;--s:0"><a href="bible/nehemiah/" title="Nehemiah, 13 chapters">Nehemiah</a></li>
+          <li class="history" style="--w:0.19;--s:2"><a href="bible/esther/" title="Esther, 10 chapters">Esther</a></li>
+          <li class="wisdom" style="--w:0.49;--s:-1"><a href="bible/job/" title="Job, 42 chapters">Job</a></li>
+          <li class="wisdom" style="--w:1.00;--s:1"><a href="bible/psalms/" title="Psalms, 150 chapters">Psalms</a></li>
+          <li class="wisdom" style="--w:0.41;--s:-2"><a href="bible/proverbs/" title="Proverbs, 31 chapters">Proverbs</a></li>
+          <li class="wisdom" style="--w:0.22;--s:0"><a href="bible/ecclesiastes/" title="Ecclesiastes, 12 chapters">Ecclesiastes</a></li>
+          <li class="wisdom" style="--w:0.16;--s:2"><a href="bible/song-of-solomon/" title="Song of Solomon, 8 chapters">Song of Solomon</a></li>
+          <li class="major" style="--w:0.63;--s:-1"><a href="bible/isaiah/" title="Isaiah, 66 chapters">Isaiah</a></li>
+          <li class="major" style="--w:0.55;--s:1"><a href="bible/jeremiah/" title="Jeremiah, 52 chapters">Jeremiah</a></li>
+          <li class="major" style="--w:0.11;--s:-2"><a href="bible/lamentations/" title="Lamentations, 5 chapters">Lamentations</a></li>
+          <li class="major" style="--w:0.53;--s:0"><a href="bible/ezekiel/" title="Ezekiel, 48 chapters">Ezekiel</a></li>
+          <li class="major" style="--w:0.22;--s:2"><a href="bible/daniel/" title="Daniel, 12 chapters">Daniel</a></li>
+          <li class="minor" style="--w:0.24;--s:-1"><a href="bible/hosea/" title="Hosea, 14 chapters">Hosea</a></li>
+          <li class="minor" style="--w:0.07;--s:1"><a href="bible/joel/" title="Joel, 3 chapters">Joel</a></li>
+          <li class="minor" style="--w:0.18;--s:-2"><a href="bible/amos/" title="Amos, 9 chapters">Amos</a></li>
+          <li class="minor" style="--w:0.00;--s:0"><a href="bible/obadiah/" title="Obadiah, 1 chapter">Obadiah</a></li>
+          <li class="minor" style="--w:0.09;--s:2"><a href="bible/jonah/" title="Jonah, 4 chapters">Jonah</a></li>
+          <li class="minor" style="--w:0.15;--s:-1"><a href="bible/micah/" title="Micah, 7 chapters">Micah</a></li>
+          <li class="minor" style="--w:0.07;--s:1"><a href="bible/nahum/" title="Nahum, 3 chapters">Nahum</a></li>
+          <li class="minor" style="--w:0.07;--s:-2"><a href="bible/habakkuk/" title="Habakkuk, 3 chapters">Habakkuk</a></li>
+          <li class="minor" style="--w:0.07;--s:0"><a href="bible/zephaniah/" title="Zephaniah, 3 chapters">Zephaniah</a></li>
+          <li class="minor" style="--w:0.04;--s:2"><a href="bible/haggai/" title="Haggai, 2 chapters">Haggai</a></li>
+          <li class="minor" style="--w:0.24;--s:-1"><a href="bible/zechariah/" title="Zechariah, 14 chapters">Zechariah</a></li>
+          <li class="minor" style="--w:0.09;--s:1"><a href="bible/malachi/" title="Malachi, 4 chapters">Malachi</a></li>
+        </ol>
+        <p>Old Testament, 39 books</p>
+      </div>
+      <div class="case">
+        <ol class="shelf" aria-label="New Testament">
+          <li class="gospels" style="--w:0.38;--s:-2"><a href="bible/matthew/" title="Matthew, 28 chapters">Matthew</a></li>
+          <li class="gospels" style="--w:0.27;--s:0"><a href="bible/mark/" title="Mark, 16 chapters">Mark</a></li>
+          <li class="gospels" style="--w:0.35;--s:2"><a href="bible/luke/" title="Luke, 24 chapters">Luke</a></li>
+          <li class="gospels" style="--w:0.32;--s:-1"><a href="bible/john/" title="John, 21 chapters">John</a></li>
+          <li class="acts" style="--w:0.38;--s:1"><a href="bible/acts/" title="Acts, 28 chapters">Acts</a></li>
+          <li class="pauline" style="--w:0.27;--s:-2"><a href="bible/romans/" title="Romans, 16 chapters">Romans</a></li>
+          <li class="pauline" style="--w:0.27;--s:0"><a href="bible/1-corinthians/" title="1 Corinthians, 16 chapters">1 Corinthians</a></li>
+          <li class="pauline" style="--w:0.23;--s:2"><a href="bible/2-corinthians/" title="2 Corinthians, 13 chapters">2 Corinthians</a></li>
+          <li class="pauline" style="--w:0.13;--s:-1"><a href="bible/galatians/" title="Galatians, 6 chapters">Galatians</a></li>
+          <li class="pauline" style="--w:0.13;--s:1"><a href="bible/ephesians/" title="Ephesians, 6 chapters">Ephesians</a></li>
+          <li class="pauline" style="--w:0.09;--s:-2"><a href="bible/philippians/" title="Philippians, 4 chapters">Philippians</a></li>
+          <li class="pauline" style="--w:0.09;--s:0"><a href="bible/colossians/" title="Colossians, 4 chapters">Colossians</a></li>
+          <li class="pauline" style="--w:0.11;--s:2"><a href="bible/1-thessalonians/" title="1 Thessalonians, 5 chapters">1 Thessalonians</a></li>
+          <li class="pauline" style="--w:0.07;--s:-1"><a href="bible/2-thessalonians/" title="2 Thessalonians, 3 chapters">2 Thessalonians</a></li>
+          <li class="pauline" style="--w:0.13;--s:1"><a href="bible/1-timothy/" title="1 Timothy, 6 chapters">1 Timothy</a></li>
+          <li class="pauline" style="--w:0.09;--s:-2"><a href="bible/2-timothy/" title="2 Timothy, 4 chapters">2 Timothy</a></li>
+          <li class="pauline" style="--w:0.07;--s:0"><a href="bible/titus/" title="Titus, 3 chapters">Titus</a></li>
+          <li class="pauline" style="--w:0.00;--s:2"><a href="bible/philemon/" title="Philemon, 1 chapter">Philemon</a></li>
+          <li class="general" style="--w:0.23;--s:-1"><a href="bible/hebrews/" title="Hebrews, 13 chapters">Hebrews</a></li>
+          <li class="general" style="--w:0.11;--s:1"><a href="bible/james/" title="James, 5 chapters">James</a></li>
+          <li class="general" style="--w:0.11;--s:-2"><a href="bible/1-peter/" title="1 Peter, 5 chapters">1 Peter</a></li>
+          <li class="general" style="--w:0.07;--s:0"><a href="bible/2-peter/" title="2 Peter, 3 chapters">2 Peter</a></li>
+          <li class="general" style="--w:0.11;--s:2"><a href="bible/1-john/" title="1 John, 5 chapters">1 John</a></li>
+          <li class="general" style="--w:0.00;--s:-1"><a href="bible/2-john/" title="2 John, 1 chapter">2 John</a></li>
+          <li class="general" style="--w:0.00;--s:1"><a href="bible/3-john/" title="3 John, 1 chapter">3 John</a></li>
+          <li class="general" style="--w:0.00;--s:-2"><a href="bible/jude/" title="Jude, 1 chapter">Jude</a></li>
+          <li class="revelation" style="--w:0.33;--s:0"><a href="bible/revelation/" title="Revelation, 22 chapters">Revelation</a></li>
+        </ol>
+        <p>New Testament, 27 books</p>
+      </div>
     </div>
-    <div>
-      <h2>Typeset, not dumped on screen</h2>
-      <p>Poetry keeps the lines the translators set. Prose flows as paragraphs. Verse numbers are there when you want them and quiet when you do not. Light by day, warm at night, and every text size iOS offers without a word clipped.</p>
+    <p class="note">Each book is as thick as it is long, as in the app’s library. Choose one to read it here.</p>
+  </div>
+</header>
+
+<main class="landing">
+  <section class="tour">
+    <div class="shots">
+      <img src="assets/psalm-23.png" width="660" height="1434" alt="Psalm 23 in Lamp &amp; Line, set as poetry with hanging lines, under the caption “The complete Bible. Free, offline, no account.”">
+      <img src="assets/today.png" width="660" height="1434" alt="The Today screen: one Psalm, one short reading, and one prayer, under the caption “A Psalm, a reading, and a prayer. On your iPhone and your Watch.”">
     </div>
-    <div>
-      <h2>The Hebrew and Greek behind every word</h2>
-      <p>Tap any verse to see the Hebrew or Greek behind every word: how it is said, how the translators rendered it, and its grammar in plain words. Tap a word for its dictionary entry, every way the Berean Standard Bible renders it, and every place it occurs. Part of Lamp &amp; Line Full. The words come from the translators’ own tables, the entries from STEP Bible’s lexicons.</p>
-    </div>
-    <div>
-      <h2>Find the verse</h2>
-      <p>Type “John 3:16”, “Jn316”, “Psalm 23”, a phrase in quotation marks, or just the words you half remember. References resolve instantly; everything else is searched across the whole Bible in a fraction of a second, offline.</p>
-    </div>
-    <div>
-      <h2>A small daily rhythm</h2>
-      <p>One Psalm, one short reading, one prayer. One card a day, not a feed — the same on your iPhone, your iPad, your Home Screen, your Lock Screen, and your Apple Watch. One reminder a day, at a time you choose, or none at all.</p>
-    </div>
-    <div>
-      <h2>A plan that waits for you</h2>
-      <p>Take a book, a testament, or the whole Bible a few chapters at a time. There are no dates in a plan: miss a week and it is exactly where you left it, with nothing to catch up on and nothing broken.</p>
-    </div>
-    <div>
-      <h2>On Apple Watch, properly</h2>
-      <p>Today comes to your Apple Watch for nothing, with your phone switched off. Full opens the whole Bible there too: all 66 books, offline, not a subset and not a companion screen.</p>
-    </div>
-    <div>
-      <h2>Yours, and private</h2>
-      <p>Bookmarks, highlights, and notes stay on your device. Nothing you read, search for, or write is sent anywhere. There is no analytics of any kind. Export everything you have written, read it back in on another device, and delete it, at any time.</p>
+    <div class="features">
+      <div>
+        <h2>The complete Berean Standard Bible, offline</h2>
+        <p>No account, no feed, no advertisement, no interruption. The complete Berean Standard Bible is stored on your device, so it works on a plane, in a basement, and with every network switched off.</p>
+      </div>
+      <div>
+        <h2>Typeset, not dumped on screen</h2>
+        <p>Poetry keeps the lines the translators set. Prose flows as paragraphs. Verse numbers are there when you want them and quiet when you do not. Light by day, warm at night, and every text size iOS offers without a word clipped.</p>
+      </div>
+      <div>
+        <h2>The Hebrew and Greek behind every word</h2>
+        <p>Tap any verse to see the Hebrew or Greek behind every word: how it is said, how the translators rendered it, and its grammar in plain words. Tap a word for its dictionary entry, every way the Berean Standard Bible renders it, and every place it occurs. Part of Lamp &amp; Line Full. The words come from the translators’ own tables, the entries from STEP Bible’s lexicons.</p>
+      </div>
+      <div>
+        <h2>Find the verse</h2>
+        <p>Type “John 3:16”, “Jn316”, “Psalm 23”, a phrase in quotation marks, or just the words you half remember. References resolve instantly; everything else is searched across the whole Bible in a fraction of a second, offline.</p>
+      </div>
+      <div>
+        <h2>A small daily rhythm</h2>
+        <p>One Psalm, one short reading, one prayer. One card a day, not a feed — the same on your iPhone, your iPad, your Home Screen, your Lock Screen, and your Apple Watch. One reminder a day, at a time you choose, or none at all.</p>
+      </div>
+      <div>
+        <h2>A plan that waits for you</h2>
+        <p>Take a book, a testament, or the whole Bible a few chapters at a time. There are no dates in a plan: miss a week and it is exactly where you left it, with nothing to catch up on and nothing broken.</p>
+      </div>
+      <div>
+        <h2>On Apple Watch, properly</h2>
+        <p>Today comes to your Apple Watch for nothing, with your phone switched off. Full opens the whole Bible there too: all 66 books, offline, not a subset and not a companion screen.</p>
+      </div>
+      <div>
+        <h2>Yours, and private</h2>
+        <p>Bookmarks, highlights, and notes stay on your device. Nothing you read, search for, or write is sent anywhere. There is no analytics of any kind. Export everything you have written, read it back in on another device, and delete it, at any time.</p>
+      </div>
     </div>
   </section>
 
-  <section class="card">
-    <h2 style="margin-top:0">Free means free</h2>
-    <p>On iPhone and iPad: the complete Bible, search, read aloud, your bookmarks and notes, Today, a reading plan (the New Testament, or the whole Bible in a year), a Paper share card, a Home Screen widget, and every accessibility feature cost nothing, for good. On Apple Watch, Today is free.</p>
-    <p style="margin:0">Lamp &amp; Line Full is one purchase — no subscription — that adds word study (the Hebrew and Greek behind every word), every reading style, every widget size, every complication, the whole Bible on Apple Watch, threads between passages, phrase highlighting, every share-card design, and as many reading plans as you like.</p>
+  <section class="price">
+    <h2>Free means free</h2>
+    <p>The Bible and everything you need to read it cost nothing, for good. Lamp &amp; Line Full is one purchase for the rest — no subscription.</p>
+    <div class="tiers">
+      <div class="tier free">
+        <h3>Free</h3>
+        <p class="terms">On iPhone and iPad, for good</p>
+        <ul>
+          <li>The complete Bible</li>
+          <li>Search and read aloud</li>
+          <li>Your bookmarks and notes</li>
+          <li>Today: a Psalm, a reading and a prayer</li>
+          <li>A reading plan: the New Testament, or the whole Bible in a year</li>
+          <li>A Paper share card and a Home Screen widget</li>
+          <li>Every accessibility feature</li>
+        </ul>
+        <p class="after">On Apple Watch, Today is free.</p>
+      </div>
+      <div class="tier full">
+        <h3>Lamp &amp; Line Full</h3>
+        <p class="terms">One purchase, never a subscription</p>
+        <ul>
+          <li>Word study: the Hebrew and Greek behind every word</li>
+          <li>Every reading style</li>
+          <li>Every widget size and every complication</li>
+          <li>The whole Bible on Apple Watch</li>
+          <li>Threads between passages</li>
+          <li>Phrase highlighting</li>
+          <li>Every share-card design</li>
+          <li>As many reading plans as you like</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <p class="notice">The interface is in ten languages. The Bible text is in English: the Berean Standard Bible, public domain since 2023.</p>
-
-  <footer>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privacy policy</a>
-    <a href="press.html">Press</a>
-    <a href="berean-standard-bible-app.html">The BSB app</a>
-    <a href="bible/">Read the Bible</a>
-    <a href="bible-on-apple-watch.html">Bible on Apple Watch</a>
-    <a href="bible-in-a-year.html">Bible in a year</a>
-    <a href="interlinear-bible-app.html">Hebrew and Greek word study</a>
-    <a href="mailto:csergay@gmail.com">csergay@gmail.com</a>
-  </footer>
 </main>
+
+<footer class="site">
+  <div>
+    <div>
+      <p class="mark"><img src="assets/icon-512.png" width="28" height="28" alt=""> Lamp &amp; Line</p>
+      <p>A quiet Bible for iPhone, iPad and Apple Watch.<br><a href="mailto:csergay@gmail.com">csergay@gmail.com</a></p>
+    </div>
+    <nav aria-label="Read">
+      <h2>Read</h2>
+      <ul>
+        <li><a href="bible/">Read the Bible</a></li>
+        <li><a href="berean-standard-bible-app.html">The BSB app</a></li>
+        <li><a href="bible-in-a-year.html">Bible in a year</a></li>
+        <li><a href="bible-on-apple-watch.html">Bible on Apple Watch</a></li>
+        <li><a href="interlinear-bible-app.html">Hebrew and Greek word study</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="About">
+      <h2>About</h2>
+      <ul>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="press.html">Press</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>
