@@ -502,3 +502,21 @@ ul.books {
 ul.books li { margin: 0 0 6px; }
 ul.books a { text-decoration: none; }
 ul.books a:hover { text-decoration: underline; }
+/* The chapter's words in the original and its cross references: set like the
+   notes, below the text, so neither is ever read as Scripture. */
+.notes + .notes { margin-top: 32px; }
+.notes ul { list-style: none; padding: 0; margin: 0; }
+.words li { margin: 0 0 10px; }
+.words .lemma { color: var(--ink); font: 1.15rem var(--serif); }
+.words .sn { font: 600 .78rem var(--sans); letter-spacing: .02em; }
+.words .in { display: block; font-variant-numeric: tabular-nums; }
+.xrefs li { margin: 0 0 4px; }
+.notes .credit { margin: 12px 0 0; font-size: .85rem; }
+/* The translated landing pages, and the line that links them from every one. */
+footer.site > p.languages { max-width: 1080px; margin: -24px auto 0; padding: 0 20px 40px; line-height: 1.9; }
+footer.site > p.languages span[aria-current] { color: var(--on-vesper); }
+main.locale h1 + .stamp { margin-bottom: 12px; }
+main.locale .notice { margin: 0 0 24px; color: var(--ink); font-weight: 600; }
+main.locale .description p { margin: 0 0 1em; line-height: 1.6; }
+main.locale .cta { margin: 28px 0; }
+main > footer .languages span[aria-current] { color: var(--ink); }

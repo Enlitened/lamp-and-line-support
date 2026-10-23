@@ -26,6 +26,19 @@ repository's `AppStore/assets/`.
 It also writes `sitemap-bible.xml` (the chapters, named in robots.txt) and the
 marked `bible` block of `sitemap.xml`. Do not edit its output by hand; change
 the script and run it again. The same database gives byte-identical files.
+Under each chapter it sets a few of the chapter's Hebrew, Aramaic or Greek
+words (STEP Bible's lexicon) and three cross references a verse (openbible.info);
+both are CC BY 4.0, and each section names its source.
+
+`de/`, `es/`, `es-mx/`, `fr/`, `it/`, `nl/`, `pt-br/`, `ja/` and `ko/` are the
+landing page in the listing's other languages, written by
+`tools/build_locales.py` from the app repository's store copy:
+
+    python3 tools/build_locales.py ~/dev/lamp-and-line/AppStore/metadata
+
+It also owns the marked `locales` (hreflang) and `languages` blocks of
+`index.html` and the `locales` block of `sitemap.xml`. Run it again whenever the
+listing's text changes.
 
 `.well-known/apple-app-site-association.json` lets the app open a chapter page
 (`/bible/*/*.html`) as a universal link, at the verse its `#v` anchor names
