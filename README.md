@@ -27,11 +27,14 @@ It also writes `sitemap-bible.xml` (the chapters, named in robots.txt) and the
 marked `bible` block of `sitemap.xml`. Do not edit its output by hand; change
 the script and run it again. The same database gives byte-identical files.
 
-`.well-known/apple-app-site-association` lets the app open a chapter page
+`.well-known/apple-app-site-association.json` lets the app open a chapter page
 (`/bible/*/*.html`) as a universal link, at the verse its `#v` anchor names
-(decision 0034 in the app repository). `vercel.json` serves it as
-`application/json`, which Apple requires; it has no extension, and
-`/.well-known/` is exempt from the trailing-slash redirect. Apple's CDN caches
+(decision 0034 in the app repository). Apple fetches it at
+`/.well-known/apple-app-site-association`, with no extension and no redirect;
+`vercel.json` rewrites that path to the `.json` file, because Vercel serves an
+extensionless file as `application/octet-stream` and a header rule in
+`vercel.json` did not override that. `/.well-known/` is exempt from the
+trailing-slash redirect. Apple's CDN caches
 it, so check a change at
 <https://app-site-association.cdn-apple.com/a/v1/lampandline.app> a day later.
 The chapter pages' addresses must not change: shared verses link them for
