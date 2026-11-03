@@ -15,11 +15,11 @@
 </div></header>
 <main>
   <h1>Privacy Policy</h1>
-  <p class="stamp">Lamp &amp; Line · Last updated 2 September 2026</p>
+  <p class="stamp">Lamp &amp; Line · Last updated 30 October 2026</p>
 
   <div class="card">
     <h2 style="margin-top:0">The short version</h2>
-    <p style="margin:0">Lamp &amp; Line collects nothing. There is no account, no analytics, no advertising, and no server. Nothing you read, search for, highlight, or write leaves your device. What you keep is offered to your device's own Spotlight index so you can find it again — on the device, and switchable off. See <a href="#spotlight">Spotlight</a> below.</p>
+    <p style="margin:0">Lamp &amp; Line collects nothing. There is no account, no analytics, no advertising, and no server. Nothing you read, search for, highlight, or write leaves your device unless you switch on <strong>iCloud Sync</strong>, and then your marks and plans travel only through your own private iCloud database, which we cannot read. See <a href="#icloud-sync">iCloud Sync</a> below. What you keep is offered to your device's own Spotlight index so you can find it again, on the device, and switchable off. See <a href="#spotlight">Spotlight</a> below.</p>
   </div>
 
   <h2>What stays on your device</h2>
@@ -34,14 +34,23 @@
   <p>All of this lives in a database inside the app's own storage on your device. It is included in your device backups, encrypted the same way the rest of your device is. You can export all of it from Settings, and delete all of it from Settings.</p>
 
   <h2>What is sent anywhere</h2>
-  <p>Nothing, with two exceptions that are not us:</p>
+  <p>Nothing, with three exceptions that are not us:</p>
   <ol>
     <li><strong>Purchases.</strong> If you buy Lamp &amp; Line Full or leave a tip, Apple processes that. We never see your payment details, and we receive no personal information from Apple — only whether this device is entitled to Full.</li>
     <li><strong>Apple Watch.</strong> If you use the Watch app, your preferences and bookmark list are sent between your iPhone and your Watch directly, over Apple's own connection between your paired devices. They do not pass through us.</li>
+    <li><strong>iCloud Sync, if you switch it on.</strong> See below.</li>
   </ol>
 
+  <h2 id="icloud-sync">iCloud Sync</h2>
+  <p>iCloud Sync is off until you turn it on in Settings. When it is on, your bookmarks, highlights, notes, the days you have marked complete, your reading plans, and the chapter you are reading are kept in step between your iPhone and iPad through your own <strong>private</strong> iCloud database, on Apple's servers under your Apple Account. Every field is stored in CloudKit's encrypted fields; with Advanced Data Protection on, not even Apple can read them. One thing is not encrypted, because CloudKit does not encrypt record names: each record's name. For your marks and plans that is a random identifier, but for a day you marked complete it is the date. We cannot read any of it: a private iCloud database is yours, and there is nowhere we could open it. Nothing is ever written to a public or shared database.</p>
+  <p>Your searches never leave the device, with sync or without it. Neither does your reading history or the record of what has been offered to Spotlight. Your settings never go to iCloud; the only place they travel is your own Apple Watch, as above.</p>
+  <p>Turning iCloud Sync off stops it and deletes nothing, on the device or in iCloud. Once it has been on, what you delete while it is off is deleted from your other devices too when you turn it back on. To remove the copy in iCloud, delete Lamp &amp; Line's data from your iCloud storage in iOS Settings; what is on your devices stays. With sync on, deleting your bookmarks, highlights, and notes in Settings deletes them on your other devices and in iCloud too, and the confirmation says so before it does.</p>
+
+  <h2>Diagnostic report</h2>
+  <p>If something goes wrong, <strong>Settings › Diagnostic Report</strong> shows a plain-text report made on your device: the problems the app has run into, the crash and hang reports iOS keeps for the app, and a few settings and counts, never what you read, search for, highlight, or write. It stays on your device and is sent only if you choose to share or email it yourself. <strong>Delete Diagnostics</strong> removes it.</p>
+
   <h2>Notifications</h2>
-  <p>The daily reminder is a local notification scheduled on your device. There is no push service, and no token is sent anywhere.</p>
+  <p>The daily reminder is a local notification scheduled on your device. There is no push service of ours. With iCloud Sync on, iOS registers the app for Apple's silent notifications, which is how iCloud tells it another of your devices has changed something; that registration is between your device and Apple, and nothing about it reaches us.</p>
 
   <h2>Search</h2>
   <p>Search runs entirely against the copy of the Bible stored on your device. Your searches are never transmitted, and the recent-search list is local and clearable.</p>
@@ -54,6 +63,11 @@
   <h2>Siri and Shortcuts</h2>
   <p>Lamp &amp; Line offers a few actions to Siri, the Shortcuts app, and the Action button: opening a passage, opening Today, continuing where you left off, and reading out today's Lamp. They run on your device against the Bible and the daily readings already stored there.</p>
   <p>If you speak to Siri, Siri handles your voice the way it does for every app, on Apple's terms rather than ours — see Apple's privacy policy. Nothing about what you have read, written, or searched for is sent as part of it.</p>
+
+  <h2>Links</h2>
+  <p>A verse you share ends with a link to that chapter on this website, lampandline.app, only if you share it, and only if you leave the Lamp &amp; Line mark on. The app does not open the link or fetch anything to make it.</p>
+  <p>Whoever opens the link visits a web page, as with any link: their browser asks our web host, Vercel, for the chapter, and Vercel sees that request as any web host does. The site has no analytics, no cookies, and no advertising. An app you share to, such as Messages, may fetch the page to show a preview.</p>
+  <p>If the app is installed, the same link opens the verse in the app instead. To know which links it may open, iOS asks Apple, not us, for a list the website publishes, when the app is installed or updated. Nothing about you or what you read is part of that request.</p>
 
   <h2>Children</h2>
   <p>The app collects no data from anyone, of any age.</p>

@@ -33,7 +33,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://lampandline.app/"
-SITE_DATE = "2026-10-23"
+SITE_DATE = "2026-11-04"
 APP_ID = "6808235223"
 
 # metadata folder, site folder, hreflang, og:locale, the App Store badge's own
