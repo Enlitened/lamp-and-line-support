@@ -50,6 +50,12 @@ extensionless file as `application/octet-stream` and a header rule in
 trailing-slash redirect. Apple's CDN caches
 it, so check a change at
 <https://app-site-association.cdn-apple.com/a/v1/lampandline.app> a day later.
+The Smart App Banner on the `bible/` pages passes an `app-argument`, so the
+banner's Open lands in the app at that page: a chapter page passes its own
+address, a book page `lampandline://passage/<USFM>/1`, `/bible/`
+`lampandline://read`. The other pages pass none, deliberately: the app reports
+any link it cannot route as "could not open this link", and it has no screen
+for the landing, support or press pages. `build_bible.py` writes the argument.
 The chapter pages' addresses must not change: shared verses link them for
 years, and the app's `WebLinkTests` pin the 66 book slugs.
 

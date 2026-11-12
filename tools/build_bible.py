@@ -296,9 +296,18 @@ def chapter_elements(db, chapter_id):
 
 # --- rendering ----------------------------------------------------------------
 
-def head(title, description, path, depth, og_title, crumbs):
+def head(title, description, path, depth, og_title, crumbs, app_argument):
     """The <head>, matching the hand-written pages'. `path` is the canonical
-    path under the site root; `depth` how many directories down the page is."""
+    path under the site root; `depth` how many directories down the page is.
+
+    `app_argument` is the Smart App Banner's `app-argument`: the link the
+    banner's Open hands the app, so a reader who has the app (or has just
+    installed it from the banner) lands on this page's place in it. It must be
+    a link the app routes (`DeepLink.route(for:)`, decision 0034), because the
+    app reports any other as "could not open this link": a chapter page passes
+    its own address, which the app reads as it reads a shared verse; the book
+    and Bible indexes, which the app has no page for, pass the nearest
+    `lampandline://` route."""
     up = "../" * depth
     url = SITE + path
     lines = [
@@ -307,7 +316,8 @@ def head(title, description, path, depth, og_title, crumbs):
         "<head>",
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
-        '<meta name="apple-itunes-app" content="app-id=%s">' % APP_ID,
+        '<meta name="apple-itunes-app" content="app-id=%s, app-argument=%s">'
+        % (APP_ID, attr(app_argument)),
         "<title>%s</title>" % esc(title),
         '<meta name="description" content="%s">' % attr(description),
         '<meta property="og:title" content="%s">' % attr(og_title),
@@ -625,6 +635,7 @@ def chapter_page(context, book, number, elements, prev_link, next_link, omitted_
     parts = [head(
         og_title + " | Lamp & Line", describe(elements, lead), path, 2, og_title,
         [("Bible", "bible/"), (book["name"], "bible/%s/" % book["slug"]), (label, path)],
+        SITE + path,
     )]
     parts.append('<main class="bible">\n')
     parts.append('  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Bible</a> › '
@@ -681,7 +692,9 @@ def book_page(book, prev_book, next_book):
     description = ("Read %s in the Berean Standard Bible (BSB): %s, with the translators’ "
                    "headings and footnotes. Public domain, free to read.") % (book["name"], count)
     parts = [head(title, description, path, 2, "%s — Berean Standard Bible (BSB)" % book["name"],
-                  [("Bible", "bible/"), (book["name"], path)])]
+                  [("Bible", "bible/"), (book["name"], path)],
+                  # The book's first chapter: where its chapter grid begins.
+                  "lampandline://passage/%s/1" % book["usfm"])]
     parts.append('<main class="bible">\n')
     parts.append('  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Bible</a></nav>\n')
     parts.append("  <h1>%s</h1>\n" % esc(book["name"]))
@@ -710,7 +723,10 @@ def index_page(books, chapters, verses):
     title = "Read the Berean Standard Bible (BSB), every book and chapter | Lamp & Line"
     description = ("The complete Berean Standard Bible (BSB) to read online: all 66 books and "
                    "1,189 chapters, with the translators’ headings and footnotes. Public domain.")
-    parts = [head(title, description, "bible/", 1, "The Berean Standard Bible (BSB)", None)]
+    # The Read tab at the reader's own place: there is no "every book" screen
+    # to open, and the reader came here to read.
+    parts = [head(title, description, "bible/", 1, "The Berean Standard Bible (BSB)", None,
+                  "lampandline://read")]
     parts.append('<main class="bible">\n')
     parts.append("  <h1>The Berean Standard Bible</h1>\n")
     parts.append(
