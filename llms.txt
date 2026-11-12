@@ -1,0 +1,19 @@
+# Lamp & Line
+
+> Lamp & Line is a Bible reader for iPhone, iPad and Apple Watch. It carries the complete Berean Standard Bible (BSB, public domain) on the device, so it works offline, and it has no account, no advertising and no analytics. Each day it sets one Psalm, one short reading and one prayer. The Bible is free on iPhone and iPad; Lamp & Line Full is one purchase, never a subscription.
+
+## The app
+
+- [Lamp & Line](https://lampandline.app/): what the app is, what is free and what Full adds
+- [Berean Standard Bible app](https://lampandline.app/berean-standard-bible-app.html): the translation and what the app does with it
+- [Offline Bible app](https://lampandline.app/offline-bible-app.html): what is stored on the device and what works with no connection
+- [No ads, no account, no tracking](https://lampandline.app/bible-app-no-ads.html): what the app does not collect
+- [A Psalm, a reading and a prayer each day](https://lampandline.app/daily-psalm-reading-prayer.html): the Today card
+- [The Bible on Apple Watch](https://lampandline.app/bible-on-apple-watch.html)
+- [Reading the Bible in a year](https://lampandline.app/bible-in-a-year.html)
+- [Hebrew and Greek word study](https://lampandline.app/interlinear-bible-app.html)
+- [Support](https://lampandline.app/support.html) and [privacy policy](https://lampandline.app/privacy.html)
+
+## The Bible
+
+- [The Berean Standard Bible](https://lampandline.app/bible/): all 66 books and 1,189 chapters, a page to a chapter, with headings, footnotes, key Hebrew and Greek words and cross references

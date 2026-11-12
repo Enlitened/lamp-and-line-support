@@ -18,6 +18,19 @@ landing page's copy is the listing's description, likewise brought across from
 `assets/` holds the icon and two framed screenshots, resized from the app
 repository's `AppStore/assets/`.
 
+The home page's hero is Today's painting, drawn in SVG and CSS from the app's
+own `SkyLight` colours and lit by the visitor's clock (dawn from 5, day from 9,
+dusk from 17, night from 21, as `SkyPhase.at`). The one inline script in
+`index.html` reads the hour and nothing else; `?light=dawn|day|dusk|night` pins
+a light for looking at all four. The `shot-*.webp` screens are the app
+repository's raw screenshots through `cwebp -q 80 -resize 660 0`.
+
+The questions on the home page, `offline-bible-app.html`,
+`bible-app-no-ads.html` and `daily-psalm-reading-prayer.html` are repeated in
+each page's FAQPage JSON-LD: change one and change the other. `llms.txt` lists
+the hand-written pages; add a new one there, to `sitemap.xml` and to the
+footers.
+
 `bible/` is the whole Berean Standard Bible, a page per chapter, written by
 `tools/build_bible.py` from the app's Scripture database (stdlib Python 3.9):
 

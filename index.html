@@ -10,20 +10,22 @@
 <!-- Proves ownership to Google Search Console, which is where the sitemap is
      submitted and search impressions are read. Removing it unverifies the site. -->
 <meta name="google-site-verification" content="SEoceQq78j0Gy8g8P2wMha72T9RkY5-7OUBrDHiyP6U">
-<title>Lamp &amp; Line — the Berean Standard Bible, offline, for iPhone and Apple Watch</title>
+<title>Lamp &amp; Line: offline Bible app for iPhone and Apple Watch</title>
 <meta name="description" content="The complete Berean Standard Bible, free and offline, with a Psalm, a reading and a prayer each day on iPhone, iPad and Apple Watch. No account, no ads, nothing collected.">
 <meta property="og:title" content="Lamp &amp; Line — Bible Reader">
 <meta property="og:description" content="The complete Bible, free and offline. No account, no ads, nothing collected. One Psalm, one reading, and one prayer a day.">
 <meta property="og:image" content="https://lampandline.app/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Lamp &amp; Line mark, an open book with a flame above it, over Psalm 119:105.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lamp &amp; Line">
 <meta property="og:url" content="https://lampandline.app/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lampandline.app/assets/og-card.png">
-<link rel="icon" href="assets/icon-512.png">
-<link rel="apple-touch-icon" href="assets/icon-512.png">
+<link rel="icon" href="assets/icon-64.png" sizes="64x64">
+<link rel="icon" href="assets/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
 <link rel="canonical" href="https://lampandline.app/">
 <!-- locales: written by tools/build_locales.py -->
 <link rel="alternate" hreflang="en" href="https://lampandline.app/">
@@ -38,6 +40,19 @@
 <link rel="alternate" hreflang="ko" href="https://lampandline.app/ko/">
 <link rel="alternate" hreflang="x-default" href="https://lampandline.app/">
 <!-- /locales -->
+<!-- The hero is painted in the light of the visitor's own hour, as Today is in
+     the app (SkyPhase.at: dawn from 5, day from 9, dusk from 17, night from 21).
+     It reads the clock and nothing else, and must run before the first paint.
+     ?light=dusk pins a light, for looking at all four. Without script the page
+     is the dawn one. -->
+<script>
+(function () {
+  var pinned = /[?&]light=(dawn|day|dusk|night)\b/.exec(location.search);
+  var hour = new Date().getHours();
+  document.documentElement.dataset.phase = pinned ? pinned[1]
+    : hour >= 5 && hour < 9 ? "dawn" : hour >= 9 && hour < 17 ? "day" : hour >= 17 && hour < 21 ? "dusk" : "night";
+})();
+</script>
 <link rel="stylesheet" href="style.css">
 <!-- The App Store page is the canonical product record; this tells a search
      engine the two are one thing rather than two competing pages. -->
@@ -48,7 +63,7 @@
   "name": "Lamp & Line – Bible Reader",
   "alternateName": "Lamp & Line",
   "applicationCategory": "ReferenceApplication",
-  "operatingSystem": "iOS 18.0 or later, iPadOS 18.0 or later, watchOS",
+  "operatingSystem": "iOS 18.0 or later, iPadOS 18.0 or later, watchOS 11 or later",
   "url": "https://lampandline.app/",
   "sameAs": [
     "https://apps.apple.com/app/id6808235223"
@@ -85,16 +100,141 @@
   "isAccessibleForFree": true
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Lamp & Line",
+  "url": "https://lampandline.app/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Person",
+    "name": "Colin Sergay"
+  }
+}
+</script>
+<!-- The questions set out under "Questions" below, word for word. Change one
+     and change the other: a search engine is told this is what the page says. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There is no account, and no way to make one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work without the internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The whole Bible is stored on your device, and so is the daily reading, so reading never needs a connection. iCloud Sync, if you turn it on, uses one to keep your devices in step, and buying Full goes through the App Store."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What translation is it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Berean Standard Bible, which was placed into the public domain on 30 April 2023. The exact source edition is shown in Settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Bible free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On iPhone and iPad, yes, always: the complete text, search, your bookmarks, your notes, Today, read aloud, one reading plan (the New Testament, or the whole Bible in a year), and every accessibility feature. On Apple Watch, Today is free: the day’s Psalm, its reading, and its prayer, with your phone switched off. Reading the whole Bible on the Watch is part of Full."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Lamp & Line Full a subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Full is a single purchase, never a subscription. Lamp & Line is one app for iPhone and iPad, and one purchase covers both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Bible text in my language?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The app itself is in ten languages: English, Spanish, Portuguese, French, German, Italian, Dutch, Japanese, Korean and Simplified Chinese. The Bible text is the English Berean Standard Bible. It is public domain, which is the reason the whole Bible can be in the app, offline and free; other translations are licensed. So you navigate and search in your language, and read Scripture in English."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="hero">
+  <!-- Decoration, as the painting is in the app: hidden from assistive
+       technology and never behind Scripture that has to be read through it. -->
+  <div class="sky" aria-hidden="true">
+    <svg class="stars" viewBox="0 0 1600 460" preserveAspectRatio="xMidYMin slice"><circle cx="427" cy="279" r="1" opacity="0.8"/><circle cx="241" cy="396" r="2.1" opacity="1"/><circle cx="797" cy="373" r="1.6" opacity="0.45"/><circle cx="1089" cy="141" r="1" opacity="0.45"/><circle cx="99" cy="259" r="1.6" opacity="0.8"/><circle cx="1261" cy="165" r="1.3" opacity="0.45"/><circle cx="1051" cy="252" r="1" opacity="0.6"/><circle cx="1529" cy="371" r="1" opacity="0.6"/><circle cx="1352" cy="53" r="2.1" opacity="1"/><circle cx="586" cy="31" r="1" opacity="0.8"/><circle cx="1339" cy="194" r="2.1" opacity="0.8"/><circle cx="728" cy="204" r="1" opacity="1"/><circle cx="486" cy="415" r="1" opacity="1"/><circle cx="873" cy="348" r="1" opacity="0.8"/><circle cx="895" cy="273" r="1.3" opacity="0.6"/><circle cx="494" cy="37" r="1" opacity="0.45"/><circle cx="1572" cy="331" r="1" opacity="1"/><circle cx="160" cy="135" r="1.6" opacity="1"/><circle cx="935" cy="400" r="1" opacity="0.45"/><circle cx="1364" cy="83" r="1.6" opacity="0.45"/><circle cx="1005" cy="254" r="1" opacity="1"/><circle cx="903" cy="27" r="1.3" opacity="0.6"/><circle cx="309" cy="414" r="2.1" opacity="0.45"/><circle cx="1564" cy="335" r="1" opacity="0.8"/><circle cx="1391" cy="331" r="1" opacity="1"/><circle cx="217" cy="28" r="2.1" opacity="1"/><circle cx="215" cy="354" r="1" opacity="0.8"/><circle cx="981" cy="76" r="1" opacity="1"/><circle cx="356" cy="67" r="1" opacity="0.6"/><circle cx="36" cy="298" r="1.3" opacity="0.45"/><circle cx="1132" cy="290" r="2.1" opacity="0.8"/><circle cx="44" cy="14" r="2.1" opacity="1"/><circle cx="1475" cy="233" r="1.3" opacity="0.45"/><circle cx="1085" cy="323" r="1" opacity="0.45"/><circle cx="1038" cy="339" r="1.3" opacity="0.45"/><circle cx="126" cy="318" r="2.1" opacity="0.8"/><circle cx="51" cy="145" r="1" opacity="1"/><circle cx="1493" cy="132" r="1.6" opacity="0.8"/><circle cx="362" cy="17" r="1.6" opacity="1"/><circle cx="1129" cy="418" r="1" opacity="0.6"/><circle cx="851" cy="353" r="2.1" opacity="1"/><circle cx="1033" cy="318" r="1.3" opacity="1"/><circle cx="361" cy="330" r="2.1" opacity="1"/><circle cx="1190" cy="167" r="1" opacity="0.45"/><circle cx="74" cy="403" r="1" opacity="0.6"/><circle cx="731" cy="323" r="2.1" opacity="0.8"/></svg>
+    <svg class="birds" viewBox="0 0 120 40"><path d="M2 20q12-14 24 0q12-14 24 0M64 8q9-10 18 0q9-10 18 0"/></svg>
+    <div class="orb"></div>
+  </div>
+  <svg class="land" viewBox="0 0 1600 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="lamp-glow"><stop offset="0" stop-color="var(--warm)" stop-opacity=".85"/><stop offset=".35" stop-color="var(--warm)" stop-opacity=".28"/><stop offset="1" stop-color="var(--warm)" stop-opacity="0"/></radialGradient>
+      <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <path id="cypress" d="M0 0C-10-28-8-72 0-100C8-72 10-28 0 0Z"/>
+    </defs>
+    <g class="far">
+      <path class="ridge" d="M0 190C200 140 380 120 560 160C760 205 900 110 1120 130C1320 148 1460 190 1600 150V480H0Z"/>
+      <path fill="url(#haze)" d="M0 190C200 140 380 120 560 160C760 205 900 110 1120 130C1320 148 1460 190 1600 150V480H0Z"/>
+      <path class="crest" d="M0 190C200 140 380 120 560 160C760 205 900 110 1120 130C1320 148 1460 190 1600 150"/>
+    </g>
+    <g class="middle">
+      <path class="ridge" d="M0 260C180 215 330 240 520 268C760 304 930 205 1180 232C1380 254 1500 285 1600 262V480H0Z"/>
+      <path fill="url(#haze)" d="M0 260C180 215 330 240 520 268C760 304 930 205 1180 232C1380 254 1500 285 1600 262V480H0Z"/>
+      <path class="crest" d="M0 260C180 215 330 240 520 268C760 304 930 205 1180 232C1380 254 1500 285 1600 262"/>
+      <use href="#cypress" class="tree" transform="translate(432 256) scale(.5)"/>
+      <use href="#cypress" class="tree" transform="translate(456 259) scale(.36)"/>
+    </g>
+    <g class="near">
+      <path class="ridge" d="M0 345C240 300 420 330 640 352C900 378 1100 312 1340 330C1460 339 1540 352 1600 345V480H0Z"/>
+      <path class="crest" d="M0 345C240 300 420 330 640 352C900 378 1100 312 1340 330C1460 339 1540 352 1600 345"/>
+      <!-- The path, and the lamp beside it: the verse above, drawn. -->
+      <path class="way" d="M610 480C700 440 905 432 932 402C950 382 880 372 891 354L900 354C894 372 990 382 968 410C942 442 840 452 812 480Z"/>
+      <use href="#cypress" class="tree" transform="translate(222 324) scale(1.12)"/>
+      <use href="#cypress" class="tree" transform="translate(262 327) scale(.8)"/>
+      <use href="#cypress" class="tree" transform="translate(1292 330)"/>
+      <use href="#cypress" class="tree" transform="translate(1334 331) scale(.7)"/>
+      <g class="lamp">
+        <circle cx="1012" cy="372" r="64" fill="url(#lamp-glow)"/>
+        <path d="M1012 398V378"/>
+        <circle cx="1012" cy="372" r="5"/>
+      </g>
+    </g>
+  </svg>
+
+  <nav class="top" aria-label="Site">
+    <a class="mark" href="./" aria-current="page">
+      <svg viewBox="105 220 814 610" width="34" height="26" aria-hidden="true"><path d="M142 586C250 628 368 664 436 672C392 570 420 380 512 250C604 380 632 570 588 672C656 664 774 628 882 586C892 625 892 660 882 700C774 716 648 800 512 800C376 800 250 716 142 700C132 660 132 625 142 586Z"/></svg>
+      Lamp &amp; Line
+    </a>
+    <ul>
+      <li><a href="bible/">Read the Bible</a></li>
+      <li><a href="#free">What is free</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </nav>
+
   <div class="hero-in">
-    <h1><img src="assets/icon-512.png" width="56" height="56" alt=""> Lamp &amp; Line</h1>
     <blockquote class="verse">
       <p><span>Your word is a lamp to my feet</span> <span>and a light to my path.</span></p>
       <footer><a href="bible/psalms/119.html#v105">Psalm 119:105</a>, Berean Standard Bible</footer>
     </blockquote>
-    <p class="lede">The complete Bible, free and offline. No account, no ads, nothing collected. One Psalm, one reading, and one prayer a day, on iPhone, iPad and Apple Watch.</p>
+    <h1>Lamp &amp; Line is a quiet Bible for iPhone, iPad and Apple&nbsp;Watch.</h1>
+    <p class="lede">The complete Bible, free and offline. No account, no ads, nothing collected. One Psalm, one reading, and one prayer a day.</p>
     <!-- A campaign link (ct=website): App Analytics then reports how many visits
      from this page became downloads, with no SDK and no tracking on this site.
      The pt= token is the account's provider token from App Analytics ›
@@ -103,13 +243,92 @@
     <p class="cta"><a class="store" href="https://apps.apple.com/app/apple-store/id6808235223?pt=129383521&amp;ct=website&amp;mt=8">Download on the App&nbsp;Store</a></p>
     <p class="fine">Free. One optional purchase, never a subscription.</p>
   </div>
+</header>
 
-  <!-- The 66 books as the app's library shelves them, each a link to its page
-       under bible/. Written once from the Scripture database (name, chapter
-       count, canonical order); style.css says what --w and --s are. -->
-  <div class="library">
-    <div class="library-in">
-      <div class="case">
+<main class="landing">
+
+  <!-- The reader, set in type rather than shown in a picture: the same Psalm
+       the app sets under Page & Type, on the app's six pages (Palette.swift). -->
+  <section class="split reader">
+    <div class="say">
+      <h2>Typeset, not dumped on screen</h2>
+      <p>Poetry keeps the lines the translators set, and a long line hangs its continuation beneath, as a printed psalter does. Prose flows as paragraphs. Verse numbers are there when you want them and quiet when you do not.</p>
+      <p>Light by day, warm at night, and every text size iOS offers without a word clipped.</p>
+      <fieldset class="looks">
+        <legend>Try a page</legend>
+        <label><input type="radio" name="look" value="ivory" checked><span style="--sw:#fbf7f0"></span>Ivory</label>
+        <label><input type="radio" name="look" value="parchment"><span style="--sw:#f2e6ce"></span>Parchment</label>
+        <label><input type="radio" name="look" value="linen"><span style="--sw:#edf0ea"></span>Linen</label>
+        <label><input type="radio" name="look" value="dim"><span style="--sw:#14120f"></span>Dim</label>
+        <label><input type="radio" name="look" value="night"><span style="--sw:#0d0906"></span>Night</label>
+        <label><input type="radio" name="look" value="black"><span style="--sw:#000"></span>Black</label>
+      </fieldset>
+      <p class="aside">Ivory and Dim are free. Lamp &amp; Line Full adds every page and typeface.</p>
+    </div>
+    <article class="leaf" aria-label="Psalm 23, as the app sets it">
+      <h3>The <span class="sc">Lord</span> Is My Shepherd</h3>
+      <p class="d">A Psalm of David.</p>
+      <div class="lines">
+        <p class="q1 first"><span class="cap">T</span>he <span class="sc">Lord</span> is my shepherd;</p>
+        <p class="q2">I shall not want.</p>
+        <p class="q1"><sup>2</sup>He makes me lie down in green pastures;</p>
+        <p class="q2">He leads me beside quiet waters.</p>
+        <p class="q1"><sup>3</sup>He restores my soul;</p>
+        <p class="q2">He guides me in the paths of righteousness</p>
+        <p class="q2">for the sake of His name.</p>
+        <p class="q1"><sup>4</sup><mark>Even though I walk through the valley of the shadow of death,</mark></p>
+        <p class="q2"><mark>I will fear no evil,</mark></p>
+        <p class="q1"><mark>for You are with me;</mark></p>
+        <p class="q2"><mark>Your rod and Your staff, they comfort me.</mark></p>
+      </div>
+      <p class="on"><a href="bible/psalms/23.html">Read all of Psalm 23</a></p>
+    </article>
+  </section>
+
+  <section class="split today">
+    <div class="devices">
+      <img class="phone" src="assets/shot-today.webp" width="660" height="1434" loading="lazy" alt="The Today screen in Lamp &amp; Line on a morning: a painted sunrise over hills, then a Psalm set as poetry with a gilt initial.">
+      <img class="watch" src="assets/shot-watch.webp" width="416" height="496" loading="lazy" alt="Today on Apple Watch: the same day’s Psalm under the same painted landscape.">
+    </div>
+    <div class="say">
+      <h2>A small daily rhythm</h2>
+      <p>One Psalm, one short reading, one prayer. One card a day, not a feed: the same on your iPhone, your iPad, your Home Screen, your Lock Screen, and your Apple Watch.</p>
+      <p>It opens under a landscape painted in the light of the hour, like the one at the top of this page. One reminder a day, at a time you choose, or none at all.</p>
+      <p class="on"><a href="daily-psalm-reading-prayer.html">How Today works</a></p>
+    </div>
+  </section>
+
+  <section class="split study">
+    <div class="say">
+      <h2>The Hebrew and Greek behind every word</h2>
+      <p>Tap any verse to see the Hebrew or Greek behind every word: how it is said, how the translators rendered it, and its grammar in plain words. Tap a word for its dictionary entry, every way the Berean Standard Bible renders it, and every place it occurs.</p>
+      <p>Part of Lamp &amp; Line Full. The words come from the translators’ own tables, the entries from STEP Bible’s lexicons.</p>
+      <p class="on"><a href="interlinear-bible-app.html">More on word study</a></p>
+    </div>
+    <div class="sheet">
+      <p class="from">From <a href="bible/john/3.html#v16">John 3:16</a></p>
+      <ol>
+        <li><span class="w" lang="grc">γὰρ</span> <i>gar</i><b>For</b><small>Conjunction</small></li>
+        <li><span class="w" lang="grc">ὁ</span> <i>ho</i><b class="none">Not rendered on its own</b><small>Article – Nominative Masculine Singular</small></li>
+        <li><span class="w" lang="grc">Θεὸς</span> <i>Theos</i><b>God</b><small>Noun – Nominative Masculine Singular</small></li>
+        <li><span class="w" lang="grc">Οὕτως</span> <i>Houtōs</i><b>so</b><small>Adverb</small></li>
+        <li><span class="w" lang="grc">ἠγάπησεν</span> <i>ēgapēsen</i><b>loved</b><small>Verb – Aorist Indicative Active – 3rd Person Singular</small></li>
+        <li><span class="w" lang="grc">τὸν</span> <i>ton</i><b>the</b><small>Article – Accusative Masculine Singular</small></li>
+        <li><span class="w" lang="grc">κόσμον</span> <i>kosmon</i><b>world</b><small>Noun – Accusative Masculine Singular</small></li>
+      </ol>
+    </div>
+  </section>
+
+<!-- The 66 books as the app's library shelves them, each a link to its page
+     under bible/. Written once from the Scripture database (name, chapter
+     count, canonical order); style.css says what --w and --s are. -->
+<section class="library">
+  <div class="library-head">
+    <h2>All sixty-six books, on the shelf</h2>
+    <p>Each book is as thick as it is long, as in the app’s library. Choose one to read it here: the whole Berean Standard Bible is on this site, <a href="bible/">a page to a chapter</a>.</p>
+  </div>
+  <div class="library-in">
+    <div class="case">
         <ol class="shelf" aria-label="Old Testament">
           <li class="law" style="--w:0.54;--s:0"><a href="bible/genesis/" title="Genesis, 50 chapters">Genesis</a></li>
           <li class="law" style="--w:0.47;--s:2"><a href="bible/exodus/" title="Exodus, 40 chapters">Exodus</a></li>
@@ -151,9 +370,9 @@
           <li class="minor" style="--w:0.24;--s:-1"><a href="bible/zechariah/" title="Zechariah, 14 chapters">Zechariah</a></li>
           <li class="minor" style="--w:0.09;--s:1"><a href="bible/malachi/" title="Malachi, 4 chapters">Malachi</a></li>
         </ol>
-        <p>Old Testament, 39 books</p>
-      </div>
-      <div class="case">
+      <p>Old Testament, 39 books</p>
+    </div>
+    <div class="case">
         <ol class="shelf" aria-label="New Testament">
           <li class="gospels" style="--w:0.38;--s:-2"><a href="bible/matthew/" title="Matthew, 28 chapters">Matthew</a></li>
           <li class="gospels" style="--w:0.27;--s:0"><a href="bible/mark/" title="Mark, 16 chapters">Mark</a></li>
@@ -183,56 +402,35 @@
           <li class="general" style="--w:0.00;--s:-2"><a href="bible/jude/" title="Jude, 1 chapter">Jude</a></li>
           <li class="revelation" style="--w:0.33;--s:0"><a href="bible/revelation/" title="Revelation, 22 chapters">Revelation</a></li>
         </ol>
-        <p>New Testament, 27 books</p>
-      </div>
+      <p>New Testament, 27 books</p>
     </div>
-    <p class="note">Each book is as thick as it is long, as in the app’s library. Choose one to read it here.</p>
   </div>
-</header>
+</section>
 
-<main class="landing">
-  <section class="tour">
-    <div class="shots">
-      <img src="assets/psalm-23.png" width="660" height="1434" alt="Psalm 23 in Lamp &amp; Line, set as poetry with hanging lines, under the caption “The complete Bible. Free, offline, no account.”">
-      <img src="assets/today.png" width="660" height="1434" alt="The Today screen: one Psalm, one short reading, and one prayer, under the caption “A Psalm, a reading, and a prayer. On your iPhone and your Watch.”">
+  <section class="rest">
+    <div>
+      <h2>Find the verse</h2>
+      <p>Type “John 3:16”, “Jn316”, “Psalm 23”, a phrase in quotation marks, or just the words you half remember. References resolve instantly; everything else is searched across the whole Bible in a fraction of a second, offline.</p>
+      <p class="on"><a href="offline-bible-app.html">The Bible, offline</a></p>
     </div>
-    <div class="features">
-      <div>
-        <h2>The complete Berean Standard Bible, offline</h2>
-        <p>No account, no feed, no advertisement, no interruption. The complete Berean Standard Bible is stored on your device, so it works on a plane, in a basement, and with every network switched off.</p>
-      </div>
-      <div>
-        <h2>Typeset, not dumped on screen</h2>
-        <p>Poetry keeps the lines the translators set. Prose flows as paragraphs. Verse numbers are there when you want them and quiet when you do not. Light by day, warm at night, and every text size iOS offers without a word clipped.</p>
-      </div>
-      <div>
-        <h2>The Hebrew and Greek behind every word</h2>
-        <p>Tap any verse to see the Hebrew or Greek behind every word: how it is said, how the translators rendered it, and its grammar in plain words. Tap a word for its dictionary entry, every way the Berean Standard Bible renders it, and every place it occurs. Part of Lamp &amp; Line Full. The words come from the translators’ own tables, the entries from STEP Bible’s lexicons.</p>
-      </div>
-      <div>
-        <h2>Find the verse</h2>
-        <p>Type “John 3:16”, “Jn316”, “Psalm 23”, a phrase in quotation marks, or just the words you half remember. References resolve instantly; everything else is searched across the whole Bible in a fraction of a second, offline.</p>
-      </div>
-      <div>
-        <h2>A small daily rhythm</h2>
-        <p>One Psalm, one short reading, one prayer. One card a day, not a feed — the same on your iPhone, your iPad, your Home Screen, your Lock Screen, and your Apple Watch. One reminder a day, at a time you choose, or none at all.</p>
-      </div>
-      <div>
-        <h2>A plan that waits for you</h2>
-        <p>Take a book, a testament, or the whole Bible a few chapters at a time. There are no dates in a plan: miss a week and it is exactly where you left it, with nothing to catch up on and nothing broken.</p>
-      </div>
-      <div>
-        <h2>On Apple Watch, properly</h2>
-        <p>Today comes to your Apple Watch for nothing, with your phone switched off. Full opens the whole Bible there too: all 66 books, offline, not a subset and not a companion screen.</p>
-      </div>
-      <div>
-        <h2>Yours, and private</h2>
-        <p>Nothing you read, search for, or write is sent to us, and there is no analytics of any kind. Bookmarks, highlights, notes, and plans are kept on your device and, if you turn on iCloud sync, in your own private iCloud database with every field encrypted, so your iPhone and iPad match; your place in the text is offered, not imposed. Searches and settings never go to iCloud. You can export everything you have written, read it back in on another device, and delete it, at any time.</p>
-      </div>
+    <div>
+      <h2>A plan that waits for you</h2>
+      <p>Take a book, a testament, or the whole Bible a few chapters at a time. There are no dates in a plan: miss a week and it is exactly where you left it, with nothing to catch up on and nothing broken.</p>
+      <p class="on"><a href="bible-in-a-year.html">Reading the Bible in a year</a></p>
+    </div>
+    <div>
+      <h2>On Apple Watch, properly</h2>
+      <p>Today comes to your Apple Watch for nothing, with your phone switched off. Full opens the whole Bible there too: all 66 books, offline, not a subset and not a companion screen.</p>
+      <p class="on"><a href="bible-on-apple-watch.html">The Bible on Apple Watch</a></p>
+    </div>
+    <div>
+      <h2>Yours, and private</h2>
+      <p>Nothing you read, search for, or write is sent to us, and there is no analytics of any kind. Bookmarks, highlights, notes, and plans are kept on your device and, if you turn on iCloud sync, in your own private iCloud database with every field encrypted, so your iPhone and iPad match; your place in the text is offered, not imposed. Searches and settings never go to iCloud. You can export everything you have written, read it back in on another device, and delete it, at any time.</p>
+      <p class="on"><a href="bible-app-no-ads.html">No ads, no account, nothing collected</a></p>
     </div>
   </section>
 
-  <section class="price">
+  <section class="price" id="free">
     <h2>Free means free</h2>
     <p>The Bible and everything you need to read it cost nothing, for good. Lamp &amp; Line Full is one purchase for the rest — no subscription.</p>
     <div class="tiers">
@@ -255,7 +453,8 @@
         <p class="terms">One purchase, never a subscription</p>
         <ul>
           <li>Word study: the Hebrew and Greek behind every word</li>
-          <li>Every reading style</li>
+          <li>Every page, typeface and reading style</li>
+          <li>iCloud sync between your devices</li>
           <li>Every widget size and every complication</li>
           <li>The whole Bible on Apple Watch</li>
           <li>Threads between passages</li>
@@ -265,9 +464,46 @@
         </ul>
       </div>
     </div>
+    <p class="notice">The interface is in ten languages. The Bible text is in English: the Berean Standard Bible, public domain since 2023.</p>
   </section>
 
-  <p class="notice">The interface is in ten languages. The Bible text is in English: the Berean Standard Bible, public domain since 2023.</p>
+  <section class="faq">
+    <h2>Questions</h2>
+    <div class="qa">
+      <details open>
+        <summary>Do I need an account?</summary>
+        <p>No. There is no account, and no way to make one.</p>
+      </details>
+      <details>
+        <summary>Does it work without the internet?</summary>
+        <p>Yes. The whole Bible is stored on your device, and so is the daily reading, so reading never needs a connection. iCloud Sync, if you turn it on, uses one to keep your devices in step, and buying Full goes through the App Store.</p>
+      </details>
+      <details>
+        <summary>What translation is it?</summary>
+        <p>The Berean Standard Bible, which was placed into the public domain on 30 April 2023. The exact source edition is shown in Settings.</p>
+      </details>
+      <details>
+        <summary>Is the Bible free?</summary>
+        <p>On iPhone and iPad, yes, always: the complete text, search, your bookmarks, your notes, Today, read aloud, one reading plan (the New Testament, or the whole Bible in a year), and every accessibility feature. On Apple Watch, Today is free: the day’s Psalm, its reading, and its prayer, with your phone switched off. Reading the whole Bible on the Watch is part of Full.</p>
+      </details>
+      <details>
+        <summary>Is Lamp &amp; Line Full a subscription?</summary>
+        <p>No. Full is a single purchase, never a subscription. Lamp &amp; Line is one app for iPhone and iPad, and one purchase covers both.</p>
+      </details>
+      <details>
+        <summary>Is the Bible text in my language?</summary>
+        <p>The app itself is in ten languages: English, Spanish, Portuguese, French, German, Italian, Dutch, Japanese, Korean and Simplified Chinese. The Bible text is the English Berean Standard Bible. It is public domain, which is the reason the whole Bible can be in the app, offline and free; other translations are licensed. So you navigate and search in your language, and read Scripture in English.</p>
+      </details>
+    </div>
+    <p class="on"><a href="support.html">Every question, and how to get in touch</a></p>
+  </section>
+
+  <section class="close">
+    <svg viewBox="105 220 814 610" width="68" height="51" aria-hidden="true"><path d="M142 586C250 628 368 664 436 672C392 570 420 380 512 250C604 380 632 570 588 672C656 664 774 628 882 586C892 625 892 660 882 700C774 716 648 800 512 800C376 800 250 716 142 700C132 660 132 625 142 586Z"/></svg>
+    <h2>Install it and the whole Bible is there</h2>
+    <p>For iPhone, iPad and Apple Watch. Nothing to sign up for and nothing to sign in to.</p>
+    <p class="cta"><a class="store" href="https://apps.apple.com/app/apple-store/id6808235223?pt=129383521&amp;ct=website&amp;mt=8">Download on the App&nbsp;Store</a></p>
+  </section>
 
   <section class="more-apps">
     <h2>More apps by Colin Sergay</h2>
@@ -281,7 +517,7 @@
 <footer class="site">
   <div>
     <div>
-      <p class="mark"><img src="assets/icon-512.png" width="28" height="28" alt=""> Lamp &amp; Line</p>
+      <p class="mark"><img src="assets/icon-64.png" width="28" height="28" alt=""> Lamp &amp; Line</p>
       <p>A quiet Bible for iPhone, iPad and Apple Watch.<br><a href="mailto:csergay@gmail.com">csergay@gmail.com</a></p>
     </div>
     <nav aria-label="Read">
@@ -289,7 +525,9 @@
       <ul>
         <li><a href="bible/">Read the Bible</a></li>
         <li><a href="berean-standard-bible-app.html">The BSB app</a></li>
+        <li><a href="offline-bible-app.html">Offline Bible app</a></li>
         <li><a href="bible-in-a-year.html">Bible in a year</a></li>
+        <li><a href="daily-psalm-reading-prayer.html">A Psalm and a prayer each day</a></li>
         <li><a href="bible-on-apple-watch.html">Bible on Apple Watch</a></li>
         <li><a href="interlinear-bible-app.html">Hebrew and Greek word study</a></li>
       </ul>
@@ -298,6 +536,7 @@
       <h2>About</h2>
       <ul>
         <li><a href="support.html">Support</a></li>
+        <li><a href="bible-app-no-ads.html">No ads, no account</a></li>
         <li><a href="privacy.html">Privacy policy</a></li>
         <li><a href="press.html">Press</a></li>
       </ul>

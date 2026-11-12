@@ -1,10 +1,11 @@
 /* The site wears the app's own identity (LampAndLineDesign in the app
    repository): the page is the reader's ivory, or its dark canvas at night,
-   and the painted things — the lamp, the shelf, the bound panels, the bar and
-   the footer — are vesper indigo with lamplight and gilt, the same in a dark
-   room as a light one, like a binding. Serif is the reading face (New York on
-   Apple devices); everything that is interface is in the system sans, as in
-   the app. No web fonts: the site makes no request it does not need. */
+   and the painted things — the landscape, the shelf, the bound panels, the bar
+   and the footer — carry their own colours, the same in a dark room as a light
+   one, like a binding. Serif is the reading face (New York on Apple devices);
+   everything that is interface is in the system sans, as in the app. No web
+   fonts and no script but the one line that reads the clock: the site makes no
+   request it does not need. */
 :root {
   --paper: #fbf7f0;
   --raised: #fffdf8;
@@ -19,6 +20,7 @@
   --lamplight: #e8b55a;
   --gilt: #d8b26a;
   --on-spine: #faf3e3;
+  --bezel: #0f1422;
 
   /* The shelves' bindings, by genre (LampIdentity.binding). */
   --law: #8c5a3c;
@@ -35,7 +37,38 @@
   --serif: ui-serif, "New York", "Iowan Old Style", Charter, "Palatino Linotype", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
 
+  /* The corners anything is cut with (LampRadius). */
+  --r-control: 12px;
+  --r-card: 20px;
+  --r-lamp: 28px;
+
+  /* The light the landscape is painted in: SkyLight.light(.dawn), the page a
+     visitor without script sees. --down is how far a dark page draws the day's
+     colours down (SkyLight.resolved). */
+  --p-top: #8ea6c6; --p-mid: #e6bfa6; --p-horizon: #fbe2c2; --p-orb: #fff2d0; --p-glow: #fcdca6;
+  --p-far: #c7b2bd; --p-middle: #9f8da5; --p-near: #6e6580; --warm: #f6c46a;
+  --orb-h: .15; --mid-at: .66; --stars: 0; --birds: .8; --lamp: .55;
+  --on-sky: #161d2b; --on-sky-soft: #2c3446; --sky-link: #161d2b;
+  --down: 0%;
+
   color-scheme: light dark;
+}
+:root[data-phase="day"] {
+  --p-top: #79a3c8; --p-mid: #b9d3e3; --p-horizon: #f1f0e4; --p-orb: #fffbea; --p-glow: #fff3cf;
+  --p-far: #a8beb6; --p-middle: #7d9a82; --p-near: #57735d; --warm: #f3c868;
+  --orb-h: .7; --mid-at: .62; --birds: .6; --lamp: .35;
+}
+:root[data-phase="dusk"] {
+  --p-top: #39406c; --p-mid: #bf7f7f; --p-horizon: #efb985; --p-orb: #fad9a4; --p-glow: #f2ae72;
+  --p-far: #8a6c86; --p-middle: #5c5277; --p-near: #3d3856; --warm: #f7c15e;
+  --orb-h: .12; --mid-at: .8; --stars: .55; --birds: 0; --lamp: .9;
+  --on-sky: #f3eada; --on-sky-soft: #e4d9cb; --sky-link: #f1cf8d;
+}
+:root[data-phase="night"] {
+  --p-top: #0e1430; --p-mid: #1c2546; --p-horizon: #3a4670; --p-orb: #f3eada; --p-glow: #8c9cc8;
+  --p-far: #2c355a; --p-middle: #202948; --p-near: #151b34; --warm: #f2b955;
+  --orb-h: .62; --mid-at: .62; --stars: 1; --birds: 0; --lamp: 1;
+  --on-sky: #f3eada; --on-sky-soft: #bdb7ae; --sky-link: #d8b26a;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -45,7 +78,10 @@
     --muted: #a49c90;
     --line: #35302a;
     --accent: #d6a951;
+    --down: 38%;
+    --on-sky: #f3eada; --on-sky-soft: #ded5c8; --sky-link: #f1cf8d;
   }
+  :root[data-phase="night"] { --down: 0%; --on-sky-soft: #bdb7ae; --sky-link: #d8b26a; }
 }
 
 * { box-sizing: border-box; }
@@ -87,7 +123,7 @@ strong { font-weight: 600; }
 .card {
   background: var(--raised);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--r-card);
   padding: 24px 26px;
   margin: 40px 0 0;
 }
@@ -110,10 +146,10 @@ a.store:hover { transform: translateY(-1px); }
 a.store:active { transform: none; }
 .fine { color: var(--muted); font-size: .9rem; margin: 0; }
 
-/* The bar above every hand-written page but the home page. */
-.bar { background: var(--vesper); color: var(--on-vesper); }
+/* The bar above every page but the home page. */
+.bar { background: var(--vesper); color: var(--on-vesper); box-shadow: inset 0 -1px 0 rgba(216, 178, 106, .35); }
 .bar > div {
-  max-width: 1080px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 12px 20px;
   display: flex;
@@ -125,6 +161,10 @@ a.store:active { transform: none; }
 .bar a:hover { color: var(--lamplight); }
 .bar a.mark { display: flex; align-items: center; gap: 10px; font: 600 1.08rem var(--serif); }
 .bar a.mark img { border-radius: 7px; }
+
+main > figure { margin: 28px 0 8px; text-align: center; }
+main > figure img { width: 100%; max-width: 300px; height: auto; border-radius: 28px; border: 6px solid var(--bezel); }
+main > figure figcaption { color: var(--muted); font-size: .9rem; margin-top: 10px; }
 
 main > footer {
   margin-top: 64px;
@@ -141,51 +181,271 @@ main > footer .rights { margin: 0 0 6px; }
 
 /* ---- Home page ------------------------------------------------------------ */
 
+/* The hero is Today's painting (Scene.swift), let out of the phone: a sky, a
+   sun or moon, and three planes of land, each one wash, in the light of the
+   visitor's hour. Every colour is a role from SkyLight, drawn down on a dark
+   page as the app draws it down. */
 .hero {
+  --sky-top: color-mix(in srgb, var(--p-top), #14120f var(--down));
+  --sky-mid: color-mix(in srgb, var(--p-mid), #14120f var(--down));
+  --horizon: color-mix(in srgb, var(--p-horizon), #14120f calc(var(--down) * .8));
+  --orb: color-mix(in srgb, var(--p-orb), #14120f calc(var(--down) * .4));
+  --glow: color-mix(in srgb, var(--p-glow), #14120f calc(var(--down) * .8));
+  --far: color-mix(in srgb, var(--p-far), #14120f var(--down));
+  --middle: color-mix(in srgb, var(--p-middle), #14120f var(--down));
+  --near: color-mix(in srgb, var(--p-near), #14120f var(--down));
+  /* How tall the land stands at the foot of the sky. */
+  --land: clamp(190px, 26vw, 380px);
+  --skyline: calc(100% - var(--land) * .7);
+
   position: relative;
-  overflow: hidden;
-  background: var(--vesper);
-  color: var(--on-vesper);
   isolation: isolate;
+  overflow: hidden;
+  color: var(--on-sky);
+  background: linear-gradient(
+    var(--sky-top),
+    var(--sky-mid) calc(var(--skyline) * var(--mid-at)),
+    var(--horizon) var(--skyline)
+  );
+  padding-bottom: calc(var(--land) * .82);
 }
-/* The lamp's light, falling from the icon across the verse and the shelves. */
-.hero::before {
+.hero .sky { position: absolute; inset: 0; z-index: -2; }
+.hero .stars {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 72%;
+  fill: #f3eada;
+  opacity: var(--stars);
+  -webkit-mask-image: linear-gradient(#000 35%, transparent);
+  mask-image: linear-gradient(#000 35%, transparent);
+}
+.hero .birds {
+  position: absolute;
+  right: 15%;
+  top: 36%;
+  width: clamp(48px, 6vw, 84px);
+  fill: none;
+  stroke: var(--near);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  opacity: var(--birds);
+}
+.hero .orb {
+  --size: clamp(64px, 9vw, 132px);
+  position: absolute;
+  right: 9%;
+  top: calc(var(--skyline) * (1 - var(--orb-h)) - var(--size) / 2);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--orb);
+  box-shadow:
+    0 0 calc(var(--size) * .5) calc(var(--size) * .18) color-mix(in srgb, var(--glow) 70%, transparent),
+    0 0 calc(var(--size) * 2.2) calc(var(--size) * 1.1) color-mix(in srgb, var(--glow) 38%, transparent);
+  /* The light comes up once, as it does when Today opens. */
+  animation: arrive 1.8s cubic-bezier(.2, .7, .2, 1) both;
+}
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(18px) scale(1.05); }
+}
+.hero .land {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  width: 100%;
+  height: var(--land);
+}
+.land .far .ridge { fill: var(--far); }
+.land .middle .ridge { fill: var(--middle); }
+.land .near .ridge { fill: var(--near); }
+.land .crest { fill: none; stroke: var(--glow); stroke-width: 1.6; opacity: .5; }
+.land .middle .tree { fill: color-mix(in srgb, var(--middle) 70%, var(--near)); }
+.land .near .tree { fill: color-mix(in srgb, var(--near) 74%, #0b0e1c); }
+.land .way { fill: var(--horizon); opacity: .3; }
+.land .lamp { opacity: var(--lamp); }
+.land .lamp path { stroke: color-mix(in srgb, var(--near) 60%, #0b0e1c); stroke-width: 3; stroke-linecap: round; }
+.land .lamp circle + path + circle { fill: color-mix(in srgb, var(--warm) 60%, #fff3d0); }
+/* The painting gives way to the page (PaintingFade). */
+.hero::after {
   content: "";
   position: absolute;
+  inset: auto 0 0;
   z-index: -1;
-  left: -30%;
-  top: -45%;
-  width: 110%;
-  height: 150%;
-  background: radial-gradient(closest-side, rgba(232, 181, 90, .28), rgba(232, 181, 90, .09) 50%, transparent);
-  animation: lamp 9s ease-in-out infinite alternate;
+  height: calc(var(--land) * .24);
+  background: linear-gradient(transparent, var(--paper));
 }
-@keyframes lamp {
-  from { opacity: .8; transform: scale(.97); }
-  to { opacity: 1; transform: scale(1.03); }
+/* What is further off moves less when you do (ScenePass.lag). Only where the
+   browser can tie it to the scroll itself; nothing moves by the clock. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero .sky { animation: lag-sky linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    .land .far { animation: lag-far linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    .land .middle { animation: lag-middle linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+  }
 }
-.hero-in { max-width: 1080px; margin: 0 auto; padding: 48px 20px 0; }
-.hero h1 {
+@keyframes lag-sky { to { transform: translateY(9vh); } }
+@keyframes lag-far { to { transform: translateY(46px); } }
+@keyframes lag-middle { to { transform: translateY(22px); } }
+
+nav.top {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 22px 20px 0;
   display: flex;
   align-items: center;
-  gap: 14px;
-  font-size: 1.35rem;
-  letter-spacing: 0;
-  margin: 0 0 64px;
+  justify-content: space-between;
+  gap: 16px;
 }
-.hero h1 img { border-radius: 13px; box-shadow: 0 0 0 1px rgba(243, 234, 218, .12), 0 0 56px rgba(232, 181, 90, .5); }
-.verse { margin: 0 0 32px; max-width: 960px; }
+nav.top a { color: var(--on-sky); text-decoration: none; }
+nav.top a:hover { text-decoration: underline; }
+nav.top .mark { display: flex; align-items: center; gap: 10px; font: 600 1.2rem var(--serif); }
+nav.top .mark svg, .close svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 46;
+  stroke-linejoin: round;
+}
+nav.top ul { list-style: none; display: flex; gap: 28px; margin: 0; padding: 0; font-size: .95rem; }
+nav.top li { margin: 0; }
+
+.hero-in { max-width: 1160px; margin: 0 auto; padding: clamp(40px, 7vh, 84px) 20px 0; }
+.verse { margin: 0 0 clamp(28px, 5vh, 52px); max-width: 960px; }
 .verse p {
-  font: 400 clamp(2.3rem, 1.1rem + 4.6vw, 4.25rem)/1.06 var(--serif);
+  font: 400 clamp(2.3rem, 1.05rem + 4.9vw, 4.6rem)/1.05 var(--serif);
   letter-spacing: -.022em;
   margin: 0 0 18px;
 }
 .verse p span { display: block; text-wrap: balance; }
 .verse p span + span { padding-left: 1.1em; }
-.verse footer { font: italic 1.05rem var(--serif); color: var(--on-vesper-muted); }
-.verse footer a { color: var(--gilt); }
-.hero .lede { color: var(--on-vesper-muted); max-width: 33em; margin-bottom: 28px; }
-.hero .fine { color: var(--on-vesper-muted); }
+.verse footer { font: italic 1.05rem var(--serif); color: var(--on-sky-soft); }
+.verse footer a { color: var(--sky-link); }
+.hero h1 {
+  font: 600 clamp(1.3rem, 1.1rem + .7vw, 1.6rem)/1.3 var(--serif);
+  letter-spacing: 0;
+  max-width: 24em;
+  margin: 0 0 8px;
+}
+.hero .lede { color: var(--on-sky-soft); max-width: 33em; margin-bottom: 26px; }
+.hero .fine { color: var(--on-sky-soft); }
+
+/* One main, sections edge to edge; each keeps its words to the same column. */
+main.landing {
+  --gutter: max(20px, calc(50% - 560px));
+  max-width: none;
+  padding: 0;
+}
+main.landing > section { padding: clamp(44px, 5.5vw, 80px) var(--gutter); }
+main.landing > section:first-child { padding-top: clamp(56px, 7vw, 104px); }
+main.landing h2 {
+  font-size: clamp(1.75rem, 1.35rem + 1.6vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -.012em;
+  margin: 0 0 16px;
+}
+main.landing .say { max-width: 31em; }
+main.landing .say p, .rest p { color: var(--muted); }
+p.on { margin: 20px 0 0; font-weight: 600; }
+main.landing .say p.on, .rest p.on { color: inherit; }
+p.aside { font-size: .9rem; margin: 14px 0 0; }
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 7vw, 104px);
+  align-items: center;
+}
+
+/* The six pages (Palette.swift), tried on a leaf of Psalm 23 as Page & Type
+   tries them. The choice is a radio group; no script. */
+.looks { border: 0; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 14px; }
+.looks legend { font: italic 1.02rem var(--serif); color: var(--accent); padding: 0; margin-bottom: 12px; }
+.looks label { display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; cursor: pointer; }
+.looks input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.looks span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sw);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
+}
+.looks input:checked + span { outline: 2px solid var(--accent); outline-offset: 3px; }
+.looks input:focus-visible + span { outline: 2px solid var(--lamplight); outline-offset: 3px; }
+
+.leaf {
+  --pg: #fbf7f0; --pg-ink: #161d2b; --pg-2: #5a6472; --pg-cap: #9c7428; --pg-rule: #e3dacb; --pg-mark: #e9d9a3;
+  background: var(--pg);
+  color: var(--pg-ink);
+  border-radius: var(--r-card);
+  padding: clamp(26px, 4vw, 44px) clamp(22px, 4vw, 48px);
+  font: 1.2rem/1.66 var(--serif);
+  box-shadow: 0 0 0 1px var(--pg-rule), 0 44px 64px -44px rgba(27, 36, 64, .5);
+  transition: background-color .3s ease, color .3s ease;
+}
+.reader:has(input[value="parchment"]:checked) .leaf { --pg: #f2e6ce; --pg-ink: #2a2017; --pg-2: #66543f; --pg-cap: #84561a; --pg-rule: #dccaaa; --pg-mark: #e5c873; }
+.reader:has(input[value="linen"]:checked) .leaf { --pg: #edf0ea; --pg-ink: #1b2420; --pg-2: #535e59; --pg-cap: #2d6559; --pg-rule: #d4dacf; --pg-mark: #e6cf7c; }
+.reader:has(input[value="dim"]:checked) .leaf { --pg: #14120f; --pg-ink: #ede6da; --pg-2: #a49c90; --pg-cap: #d6a951; --pg-rule: #35302a; --pg-mark: #463a20; }
+.reader:has(input[value="night"]:checked) .leaf { --pg: #0d0906; --pg-ink: #ddbe90; --pg-2: #9e8664; --pg-cap: #d08e40; --pg-rule: #2c2217; --pg-mark: #4a3510; }
+.reader:has(input[value="black"]:checked) .leaf { --pg: #000; --pg-ink: #e6e4df; --pg-2: #9d9b96; --pg-cap: #d6a951; --pg-rule: #2a2928; --pg-mark: #4c3b12; }
+.leaf h3 { font: 600 1.02rem/1.35 var(--serif); margin: 0 0 4px; }
+.leaf .d { font-style: italic; font-size: .92em; color: var(--pg-2); margin: 0 0 14px; }
+.leaf .sc { font-variant-caps: small-caps; letter-spacing: .01em; }
+.leaf .lines p { margin: 0; padding-left: 2em; text-indent: -2em; }
+.leaf .lines .q2 { text-indent: -1em; }
+.leaf .lines .first { padding-left: 0; text-indent: 0; }
+.leaf .lines .first + .q2 { padding-left: 0; text-indent: 1em; }
+.leaf .cap { float: left; font-size: 3.25em; line-height: .8; padding: .07em .07em 0 0; color: var(--pg-cap); }
+.leaf sup { font: 600 .56em var(--sans); color: var(--pg-2); margin-right: .3em; line-height: 0; }
+.leaf mark { background: var(--pg-mark); color: inherit; padding: .1em 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.leaf .on { font: 600 .95rem var(--sans); }
+.leaf .on a { color: var(--pg-cap); }
+
+/* Screens from the app, in a bezel drawn here so the picture is only the screen. */
+.devices { position: relative; justify-self: center; width: min(78%, 330px); }
+.devices img { display: block; height: auto; background: var(--bezel); }
+.devices .phone {
+  width: 100%;
+  border: 9px solid var(--bezel);
+  border-radius: 48px;
+  box-shadow: 0 0 0 1px rgba(243, 234, 218, .18), 0 50px 70px -46px rgba(27, 36, 64, .6);
+}
+.devices .watch {
+  position: absolute;
+  right: -24%;
+  bottom: 7%;
+  width: 46%;
+  border: 8px solid var(--bezel);
+  border-radius: 27% / 23%;
+  box-shadow: 0 0 0 1px rgba(243, 234, 218, .18), 0 30px 44px -26px rgba(27, 36, 64, .65);
+}
+
+/* Word study, as its sheet sets it: the word, how it is said, what it became,
+   its grammar in plain words. */
+.sheet {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: 22px clamp(20px, 3.4vw, 36px) 6px;
+  box-shadow: 0 44px 64px -48px rgba(27, 36, 64, .45);
+}
+.sheet .from { font: italic 1.02rem var(--serif); color: var(--accent); margin: 0 0 6px; }
+.sheet ol { list-style: none; margin: 0; padding: 0; }
+.sheet li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: .6em;
+  margin: 0;
+  padding: 13px 0 14px;
+  border-top: 1px solid var(--line);
+}
+.sheet .w { font: 1.45rem/1.3 var(--serif); }
+.sheet i { font: italic 1.05rem var(--serif); color: var(--muted); }
+.sheet b, .sheet small { grid-column: 1 / -1; }
+.sheet b { font-weight: 500; color: var(--accent); }
+.sheet b.none { color: var(--ink); font-weight: 400; }
+.sheet small { color: var(--muted); font-size: .8rem; }
 
 /* The library: every book of the Bible as a spine as thick as it is long, on
    the square-root curve of the app's BookSpine. A spine's --w is its share of
@@ -196,12 +456,38 @@ main > footer .rights { margin: 0 0 6px; }
   --thin: 18px;
   --span: 22px;
   --spine: 148px;
-  padding: 72px 0 44px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--vesper);
+  color: var(--on-vesper);
+  padding: clamp(64px, 8vw, 104px) 0 clamp(56px, 7vw, 88px);
 }
+/* The lamp's light, falling across the shelves from the reader's side. */
+.library::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -25%;
+  top: -60%;
+  width: 95%;
+  height: 170%;
+  background: radial-gradient(closest-side, rgba(232, 181, 90, .24), rgba(232, 181, 90, .07) 55%, transparent);
+}
+.library-head { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+.library-head h2 {
+  font-size: clamp(1.75rem, 1.35rem + 1.6vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -.012em;
+  margin: 0 0 14px;
+}
+.library-head p { color: var(--on-vesper-muted); max-width: 35em; margin: 0; }
+.library-head a { color: var(--gilt); }
 .library-in {
-  max-width: 1080px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 12px 20px 0;
+  padding: 56px 20px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -262,49 +548,16 @@ main > footer .rights { margin: 0 0 6px; }
 .pauline { --binding: var(--pauline); }
 .general { --binding: var(--general); }
 .revelation { --binding: var(--revelation); }
-.library .note {
-  max-width: 1080px;
-  margin: 24px auto 0;
-  padding: 0 20px;
-  color: var(--on-vesper-muted);
-  font-size: .92rem;
-}
 
-main.landing { max-width: 1080px; padding-top: 96px; }
+.rest { display: grid; grid-template-columns: 1fr 1fr; gap: 48px clamp(32px, 7vw, 104px); }
+.rest > div { border-top: 1px solid var(--line); padding-top: 26px; }
+main.landing .rest h2 { font-size: 1.5rem; letter-spacing: 0; margin-bottom: 10px; }
+.rest p { max-width: 34em; }
 
-/* The two screens stay in view while the features scroll past them. */
-.tour {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: 80px;
-  align-items: start;
-}
-.shots {
-  position: sticky;
-  top: 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-.shots img {
-  width: 100%;
-  height: auto;
-  border-radius: 18px;
-  box-shadow: 0 0 0 1px var(--line), 0 28px 48px -30px rgba(27, 36, 64, .5);
-}
-.shots img + img { margin-top: 56px; }
-.features h2 { margin: 0 0 8px; font-size: 1.35rem; }
-.features > div { padding: 28px 0; border-top: 1px solid var(--line); }
-.features > div:first-child { padding-top: 0; border-top: 0; }
-.features p { color: var(--muted); margin: 0; max-width: 36em; }
-
-.price { margin-top: 120px; }
-.more-apps { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); }
-.more-apps p { color: var(--muted); max-width: 36em; }
-.price > h2 { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.4rem); margin: 0 0 10px; }
+main.landing > .price { padding-top: 0; }
 .price > p { color: var(--muted); max-width: 38em; margin-bottom: 32px; }
 .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.tier { border-radius: 16px; padding: 32px 34px 30px; }
+.tier { border-radius: var(--r-card); padding: 32px 34px 30px; }
 .tier h3 { margin: 0 0 4px; font-size: 1.5rem; }
 .tier .terms { margin: 0 0 18px; font-size: .95rem; }
 .tier ul { list-style: none; padding: 0; margin: 0; }
@@ -331,12 +584,48 @@ main.landing { max-width: 1080px; padding-top: 96px; }
   box-shadow: inset 0 0 0 7px var(--vesper), inset 0 0 0 8px rgba(216, 178, 106, .55);
 }
 .tier.full .terms, .tier.full .after { color: var(--on-vesper-muted); }
+.price > .notice { color: var(--muted); font-size: .92rem; margin: 28px 0 0; }
 
-.notice { color: var(--muted); font-size: .92rem; margin: 40px 0 0; }
+main.landing > .faq { padding-top: 0; }
+.qa { max-width: 46em; border-bottom: 1px solid var(--line); }
+.qa details { border-top: 1px solid var(--line); }
+.qa summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 17px 0;
+  font: 500 1.2rem/1.3 var(--serif);
+  cursor: pointer;
+  list-style: none;
+}
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::after { content: "+"; font: 400 1.3rem/1 var(--sans); color: var(--accent); }
+.qa details[open] summary::after { content: "–"; }
+.qa details p { color: var(--muted); max-width: 40em; margin: 0 0 20px; }
+
+/* The last word is a lamp card: vesper, bound in gilt, the mark lit. */
+main.landing > .close {
+  margin: 0 var(--gutter);
+  padding: clamp(44px, 6vw, 72px) 24px;
+  border-radius: var(--r-lamp);
+  background: radial-gradient(60% 90% at 50% 0, rgba(232, 181, 90, .22), transparent 70%) var(--vesper);
+  color: var(--on-vesper);
+  text-align: center;
+  box-shadow: inset 0 0 0 7px var(--vesper), inset 0 0 0 8px rgba(216, 178, 106, .5);
+}
+.close svg { color: var(--lamplight); filter: drop-shadow(0 0 22px rgba(232, 181, 90, .55)); margin-bottom: 18px; }
+main.landing .close h2 { margin-bottom: 10px; }
+.close p { color: var(--on-vesper-muted); }
+.close .cta { margin: 26px 0 0; }
+
+main.landing > .more-apps { padding-top: clamp(56px, 7vw, 88px); padding-bottom: clamp(64px, 8vw, 104px); }
+main.landing .more-apps h2 { font-size: 1.3rem; letter-spacing: 0; font-weight: 600; }
+.more-apps p { color: var(--muted); max-width: 40em; }
 
 footer.site { background: var(--vesper); color: var(--on-vesper-muted); font-size: .92rem; }
 footer.site > div {
-  max-width: 1080px;
+  max-width: 1160px;
   margin: 0 auto;
   padding: 48px 20px 56px;
   display: grid;
@@ -352,34 +641,34 @@ footer.site a { color: var(--on-vesper-muted); text-decoration: none; }
 footer.site a:hover { color: var(--lamplight); }
 
 @media (max-width: 860px) {
-  .tour { grid-template-columns: 1fr; gap: 48px; }
-  .shots { position: static; max-width: 520px; }
+  .split { grid-template-columns: 1fr; }
+  .split .devices { order: 2; margin-top: 12px; }
+  .rest { grid-template-columns: 1fr; }
   .tiers { grid-template-columns: 1fr; }
   footer.site > div { grid-template-columns: 1fr 1fr; }
   footer.site > div > :first-child { grid-column: 1 / -1; }
 }
 @media (max-width: 560px) {
   main { padding-top: 44px; }
-  .hero-in { padding-top: 28px; }
-  .hero h1 { margin-bottom: 44px; }
+  nav.top li:not(:first-child) { display: none; }
+  .hero .birds { display: none; }
+  .hero { --land: 200px; }
   .verse p span + span { padding-left: .7em; }
+  .leaf { font-size: 1.06rem; }
+  .devices .watch { right: -12%; }
   /* A shelf is wider than a phone: it scrolls on its own, the page does not. */
-  .library { --thin: 16px; --span: 18px; --spine: 124px; padding-top: 52px; }
-  .library-in { display: block; overflow-x: auto; scrollbar-width: none; }
+  .library { --thin: 16px; --span: 18px; --spine: 124px; }
+  .library-in { display: block; overflow-x: auto; scrollbar-width: none; padding-top: 40px; }
   .library-in::-webkit-scrollbar { display: none; }
   .case { width: max-content; }
   .case + .case { margin-top: 28px; }
   .shelf a { font-size: 10px; }
-  main.landing { padding-top: 56px; }
-  .shots { gap: 12px; }
-  .shots img { border-radius: 12px; }
-  .shots img + img { margin-top: 32px; }
-  .price { margin-top: 72px; }
   .tier { padding: 26px 22px; }
+  main.landing > .close { margin: 0 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero::before { animation: none; }
-  a.store, .shelf a { transition: none; }
+  .hero .orb { animation: none; }
+  a.store, .shelf a, .leaf { transition: none; }
   a.store:hover, .shelf a:hover, .shelf a:focus-visible { transform: none; }
 }
 
@@ -515,7 +804,7 @@ ul.books a:hover { text-decoration: underline; }
 .xrefs li { margin: 0 0 4px; }
 .notes .credit { margin: 12px 0 0; font-size: .85rem; }
 /* The translated landing pages, and the line that links them from every one. */
-footer.site > p.languages { max-width: 1080px; margin: -24px auto 0; padding: 0 20px 40px; line-height: 1.9; }
+footer.site > p.languages { max-width: 1160px; margin: -24px auto 0; padding: 0 20px 40px; line-height: 1.9; }
 footer.site > p.languages span[aria-current] { color: var(--on-vesper); }
 main.locale h1 + .stamp { margin-bottom: 12px; }
 main.locale .notice { margin: 0 0 24px; color: var(--ink); font-weight: 600; }
